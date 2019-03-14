@@ -33,6 +33,8 @@
 
 ### 3. 팀 소개
 
+#### 지도 교수 : 이 상 환 교수님
+
 <img src="https://i.imgur.com/vhQIome.jpg" width="200px">
 
 ```
