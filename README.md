@@ -2,7 +2,9 @@
 
 ### 1. 프로젝트 소개
 
-미세먼지 사진
+<div align="center">
+  <img src="https://i.imgur.com/Dg1G3sh.jpg" width="30%" height="30%">
+</div>
 
  미세먼지는 매년 꾸준히 증가하고 있습니다. 그렇기 때문에 정부에서는 외출을 삼가하고 실내 활동을 권장하고 있습니다.
  
