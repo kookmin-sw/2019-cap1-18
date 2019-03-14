@@ -70,7 +70,7 @@
 
 ```
 * 박종민
-* 역할 : 연동 기기 Hardware 제작,
+* 역할 : 연동 기기 Hardware 제작
          연동 기기 Software 구현
 ```
 
