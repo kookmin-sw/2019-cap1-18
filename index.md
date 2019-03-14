@@ -33,12 +33,17 @@
 
 ### 3. 팀 소개
 
+#### 지도 교수 : 이 상 환 교수님
+
+
+
 <img src="https://i.imgur.com/vhQIome.jpg" width="200px">
 
 ```
 * 오상화
 * 역할 : 서버 구축 및 관리
          통신 컴포넌트 구현
+* e-mail : minbosh92@gmail.com
 ```
 
 <img src="https://i.imgur.com/q8d2hy7.jpg" width="200px">
@@ -47,6 +52,7 @@
 * 김수은
 * 역할 : 라즈베리파이 환경 구성
          웹 앱 구현
+* e-mail : happyse97@naver.com
 ```
 
 <img src="https://i.imgur.com/KLQqduu.jpg" width="200px">
@@ -56,6 +62,7 @@
 * 역할 : 통신 컴포넌트 구현
          웹 앱 구현
          Mini BuT Hardware 제작
+* e-mail : mtj2741@naver.com
 ```
 
 <img src="https://i.imgur.com/kigbNp9.jpg" width="200px">
@@ -64,6 +71,7 @@
 * 박재효
 * 역할 : DB 생성 및 관리
          데이터 처리 컴포넌트 구현
+* e-mail : ayopark12@gmail.com
 ```
 
 <img src="https://i.imgur.com/6cciTaa.jpg" width="200px">
@@ -72,12 +80,10 @@
 * 박종민
 * 역할 : 연동 기기 Hardware 제작
          연동 기기 Software 구현
+* e-mail : ansxjrdptj94@naver.com
 ```
 
 - - -
-
-
-### 4. 사용법
 
 
 
