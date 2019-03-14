@@ -37,6 +37,7 @@ Mini BuT은 Mini Butlet, 작은 집사라는 의미로 집 안을 관리하는 �
 ```
 
 <img src="https://i.imgur.com/q8d2hy7.jpg" width="200px">
+
 ```
 * 김수은
   * 역할 : 라즈베리파이 환경 구성,
@@ -52,6 +53,7 @@ Mini BuT은 Mini Butlet, 작은 집사라는 의미로 집 안을 관리하는 �
 ```
 
 <img src="https://i.imgur.com/kigbNp9.jpg" width="200px">
+
 ```
 * 박재효
   * 역할 : DB 생성 및 관리,
