@@ -32,39 +32,40 @@ Mini BuT은 Mini Butlet, 작은 집사라는 의미로 집 안을 관리하는 �
 
 ```
 * 오상화
-  * 역할 : 서버 구축 및 관리,
-           통신 컴포넌트 구현
+* 역할 : 서버 구축 및 관리
+         통신 컴포넌트 구현
 ```
 
 <img src="https://i.imgur.com/q8d2hy7.jpg" width="200px">
 
 ```
 * 김수은
-  * 역할 : 라즈베리파이 환경 구성,
-           웹 앱 구현
+* 역할 : 라즈베리파이 환경 구성
+         웹 앱 구현
 ```
 
 사진
 ```
 * 민태준
-  * 역할 : 통신 컴포넌트 구현,
-           웹 앱 구현
-           Mini BuT Hardware 제작
+* 역할 : 통신 컴포넌트 구현
+         웹 앱 구현
+         Mini BuT Hardware 제작
 ```
 
 <img src="https://i.imgur.com/kigbNp9.jpg" width="200px">
 
 ```
 * 박재효
-  * 역할 : DB 생성 및 관리,
-           데이터 처리 컴포넌트 구현
+* 역할 : DB 생성 및 관리
+         데이터 처리 컴포넌트 구현
 ```
 
-사진
+<img src="https://i.imgur.com/6cciTaa.jpg" width="200px">
+
 ```
 * 박종민
-  * 역할 : 연동 기기 Hardware 제작,
-           연동 기기 Software 구현
+* 역할 : 연동 기기 Hardware 제작,
+         연동 기기 Software 구현
 ```
 
 - - -
