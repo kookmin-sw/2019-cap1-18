@@ -41,11 +41,13 @@ Using Web App, users can easily view their accumulated indoor environment data a
 - - -
 
 
-### 3. 소개 영상 및 사이트
+### 3. 프로젝트 소개 영상 및 사이트
+
+아래 이미지를 클릭하시면 프로젝트 소개 영상을 보실 수 있습니다.
 
 [![MASK](https://img.youtube.com/vi/ffzc6NPKIRc/0.jpg)](https://www.youtube.com/watch?v=ffzc6NPKIRc&feature=youtu.be)
 
-([https://kookmin-sw.github.io/2019-cap1-18/] 소개 영상 사이트 : (https://kookmin-sw.github.io/2019-cap1-18/))
+프로젝트 소개 사이트 : https://kookmin-sw.github.io/2019-cap1-18/
 
 - - -
 
