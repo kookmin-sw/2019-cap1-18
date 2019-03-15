@@ -23,14 +23,32 @@
 - - -
 
 
-### 2. 소개 영상
+### 2. Abstract
+
+Fine dust is increasing every year. So the government is encouraging people to stay indoors instead of going out.
+However, there are also factors that cause fine dust from cooking and home Appliances etc. Therefore, ventilation is recommended
+and alternative options are provided, such as using an air purifier when fine dust concentration is high.
+For the reason, we intend to manage the improvement of indoor air environment, including ventilation, more efficiently and systematically through out **'Mini BuT'** project.
+**'Mini BuT'** means 'Mini Butler'. It means a small butler, which manages indoor air quality, like a butler who manages the inside of the house.
+
+Collects indoor environment data through sensors connected to Raspberry Pi and sends it to server by 'MQTT'communication.
+Server obtain outdoor environment data with public data 'API' and compares and analyzes it with indoor environment data.
+Then, the server sends control commands to the Raspberry Pi according to the analysis results.
+The Raspberry Pi operates the devices connected to the Raspberry Pi by 'IR' communication.
+Using Web App, users can easily view their accumulated indoor environment data and directly control their devices.
+
+
+- - -
+
+
+### 3. 소개 영상
 
 프로젝트 소개하는 영상
 
 - - -
 
 
-### 3. 팀 소개
+### 4. 팀 소개
 
 #### 지도 교수 : 이 상 환 교수님
 
