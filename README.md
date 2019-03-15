@@ -58,7 +58,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 
 
 
-<img src="https://i.imgur.com/vhQIome.jpg" width="200px">
+<img src="https://i.imgur.com/vhQIome.jpg" width="300px">
 
 ```
 * 오상화
