@@ -43,7 +43,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 
 ### 3. 소개 영상
 
-[![MASK](https://img.youtube.com/vi/fzc6NPKIRc/0.jpg)](https://www.youtube.com/watch?v=ffzc6NPKIRc&feature=youtu.be)
+[![MASK](https://img.youtube.com/vi/ffzc6NPKIRc/0.jpg)](https://www.youtube.com/watch?v=ffzc6NPKIRc&feature=youtu.be)
 
 - - -
 
