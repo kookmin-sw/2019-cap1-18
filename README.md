@@ -67,7 +67,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : minbosh92@gmail.com
 ```
 
-<img src="https://i.imgur.com/q8d2hy7.jpg" width="200px">
+<img src="https://i.imgur.com/q8d2hy7.jpg" width="300px">
 
 ```
 * 김수은
@@ -76,7 +76,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : happyse97@naver.com
 ```
 
-<img src="https://i.imgur.com/KLQqduu.jpg" width="200px">
+<img src="https://i.imgur.com/KLQqduu.jpg" width="300px">
 
 ```
 * 민태준
@@ -86,7 +86,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : mtj2741@naver.com
 ```
 
-<img src="https://i.imgur.com/kigbNp9.jpg" width="200px">
+<img src="https://i.imgur.com/kigbNp9.jpg" width="300px">
 
 ```
 * 박재효
@@ -95,7 +95,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : ayopark12@gmail.com
 ```
 
-<img src="https://i.imgur.com/6cciTaa.jpg" width="200px">
+<img src="https://i.imgur.com/6cciTaa.jpg" width="300px">
 
 ```
 * 박종민
