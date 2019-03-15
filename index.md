@@ -45,7 +45,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 
 [![MASK](https://img.youtube.com/vi/ffzc6NPKIRc/0.jpg)](https://www.youtube.com/watch?v=ffzc6NPKIRc&feature=youtu.be)
 
-https://kookmin-sw.github.io/2019-cap1-2019-18/
+([https://kookmin-sw.github.io/2019-cap1-2019-18/](https://kookmin-sw.github.io/2019-cap1-2019-18/))
 
 - - -
 
