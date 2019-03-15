@@ -3,13 +3,13 @@
 ### 1. 프로젝트 소개
 
 <div align="center">
-  <img src="https://i.imgur.com/Dg1G3sh.jpg" width="30%" height="30%">
+  <img src="https://i.imgur.com/Dg1G3sh.jpg" width="40%" height="40%">
 </div>
 
  미세먼지는 매년 꾸준히 증가하고 있습니다. 그렇기 때문에 정부에서는 외출을 삼가하고 실내 활동을 권장하고 있습니다.
  
 <div align="center">
-  <img src="https://i.imgur.com/kOg57Tz.jpg" width="50%" height="50%">
+  <img src="https://i.imgur.com/kOg57Tz.jpg" width="60%" height="60%">
 </div>
 
  실내에서도 요리나 가전제품 등으로 인한 미세먼지 발생으로 인하여 미세먼지가 하루 허용기준보다 100배 이상 치솟을 수 있기 때문에 환기를 권장하고 불가피하게 미세먼지의 농도가 높을 때에는 차선책으로 공기청정기를 사용하는 등의 대안을 제시하고 있습니다.
@@ -41,11 +41,13 @@ Using Web App, users can easily view their accumulated indoor environment data a
 - - -
 
 
-### 3. 소개 영상 및 사이트
+### 3. 프로젝트 소개 영상 및 사이트
+
+아래 이미지를 클릭하시면 프로젝트 소개 영상을 보실 수 있습니다.
 
 [![MASK](https://img.youtube.com/vi/ffzc6NPKIRc/0.jpg)](https://www.youtube.com/watch?v=ffzc6NPKIRc&feature=youtu.be)
 
-([https://kookmin-sw.github.io/2019-cap1-18/](https://kookmin-sw.github.io/2019-cap1-18/))
+
 
 - - -
 
@@ -56,7 +58,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 
 
 
-<img src="https://i.imgur.com/vhQIome.jpg" width="200px">
+<img src="https://i.imgur.com/vhQIome.jpg" width="300px">
 
 ```
 * 오상화
@@ -65,7 +67,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : minbosh92@gmail.com
 ```
 
-<img src="https://i.imgur.com/q8d2hy7.jpg" width="200px">
+<img src="https://i.imgur.com/q8d2hy7.jpg" width="300px">
 
 ```
 * 김수은
@@ -74,7 +76,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : happyse97@naver.com
 ```
 
-<img src="https://i.imgur.com/KLQqduu.jpg" width="200px">
+<img src="https://i.imgur.com/KLQqduu.jpg" width="300px">
 
 ```
 * 민태준
@@ -84,7 +86,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : mtj2741@naver.com
 ```
 
-<img src="https://i.imgur.com/kigbNp9.jpg" width="200px">
+<img src="https://i.imgur.com/kigbNp9.jpg" width="300px">
 
 ```
 * 박재효
@@ -93,7 +95,7 @@ Using Web App, users can easily view their accumulated indoor environment data a
 * e-mail : ayopark12@gmail.com
 ```
 
-<img src="https://i.imgur.com/6cciTaa.jpg" width="200px">
+<img src="https://i.imgur.com/6cciTaa.jpg" width="300px">
 
 ```
 * 박종민
