@@ -3,13 +3,13 @@
 ### 1. 프로젝트 소개
 
 <div align="center">
-  <img src="https://i.imgur.com/Dg1G3sh.jpg" width="40%" height="40%">
+  <img src="https://i.imgur.com/Dg1G3sh.jpg" width="300">
 </div>
 
  미세먼지는 매년 꾸준히 증가하고 있습니다. 그렇기 때문에 정부에서는 외출을 삼가하고 실내 활동을 권장하고 있습니다.
  
 <div align="center">
-  <img src="https://i.imgur.com/kOg57Tz.jpg" width="700">
+  <img src="https://i.imgur.com/kOg57Tz.jpg" width="500">
 </div>
 
  실내에서도 요리나 가전제품 등으로 인한 미세먼지 발생으로 인하여 미세먼지가 하루 허용기준보다 100배 이상 치솟을 수 있기 때문에 환기를 권장하고 불가피하게 미세먼지의 농도가 높을 때에는 차선책으로 공기청정기를 사용하는 등의 대안을 제시하고 있습니다.
