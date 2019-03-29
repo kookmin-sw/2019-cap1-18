@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+  <head>
+    <meta charset="utf-8">
+    <!--<style>
+      body {
+        background-color: #FFB4FF;
+      }
+    </style>-->
+     {% if title %}
+      <title>Mini BuT - {{ title }}</title>
+     {% else %}
+      <title>Mini BuT</title>
+     {% endif %}
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+ 
+  <body>
+
+    <header>
+      <nav>
+        <a href="/">TEST1</a>
+        <a href="/">TEST2</a>
+        <a href="/about">About</a>
+        <a href="/test">Set Data</a>
+      </nav>
+      <hr>
+    </header>
+ 
+    <main role="main">
+    <!-- Main content block -->
+    {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>View Data</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+ </head>
+ <body>
+	<h4>반갑습니다.</h4>
+	<strong>User infomation</strong><br>
+  Fistname(이름) : {{ firstname }}<br>
+  Lastname(성): {{ lastname }} <br>
+  Email: {{ email }}
+
+	<br><br>
+  <button type="button" onclick="location.href='/'">메인으로 돌아가기</button>
+ </body>
+</html>

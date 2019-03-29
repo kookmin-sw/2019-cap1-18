@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Set Data</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+ </head>
+ <body>
+ 	<h1>데이터를 입력하세요.h1</h1>
+ 	<h2>데이터를 입력하세요.h2</h2>
+	<h3>데이터를 입력하세요.h3</h3>
+	<form action="/hello" method="get">
+	  First name(이름):<br>
+	  <input type="text" name="firstname"> <!-- value="firstname">-->
+	  <br>
+	  Last name(성):<br>
+	  <input type="text" name="lastname"> <!-- value="lastname">-->
+	  <br>
+	  Email:<br>
+	  <input type="text" name="email"> <!-- value="test@gmail.com">-->
+	  <br>
+	  <br>
+	  <input type="submit" value="Submit">
+	</form> 
+ </body>
+</html>
