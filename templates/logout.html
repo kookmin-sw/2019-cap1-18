@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if session['logged'] %}
+<p>You're logged in already!</p>
+<button type="button" onclick="location.href='/logout'">Logout</button>
+{% endif %}
+{% endblock %}

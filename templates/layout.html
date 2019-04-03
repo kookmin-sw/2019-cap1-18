@@ -3,13 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<style>
-      body {
-      test
-      test
-        background-color: #FFB4FF;
-      }
-    </style>-->
+
      {% if title %}
       <title>Mini BuT - {{ title }}</title>
      {% else %}
@@ -22,13 +16,30 @@
   <body>
 
     <header>
-      <nav>
-        <a href="/">TEST1</a>
-        <a href="/">TEST2</a>
-        <a href="/about">About</a>
-        <a href="/test">Set Data</a>
+      <nav class="navbar navbar-default">
+      <!--<ul class="nav nav-pills">-->
+        <!--<div class="container-fluid">-->
+          <!--<div class="navbar-hearder">
+            <a class="navbar-brand" href="/">minibut</a>
+          </div>-->
+          <div>
+      <!--<nav>-->
+        <!--<li role="navigation" class="active"><<a href="/">TEST1</a>
+        <li role="navigation"><a href="/">TEST2</a>
+        <li role="navigation"><a href="/about">About</a>
+        <li role="presentation"><a href="/test">Set Data</a>-->
+      <!--</nav>-->
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Main</a></li>
+             <!-- <li><a href="/">TEST2</a></li>-->
+              <li><a href="about">About</a></li>
+              <li><a href="/test">Set Data</a></li>
+              <li><a href="/login">Log in</a></li>
+            </ul>
+          </div>
+        </div>
       </nav>
-      <hr>
+      <!--<hr>-->
     </header>
  
     <main role="main">
