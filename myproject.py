@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
@@ -45,6 +45,33 @@ def action():
 	##email = request.form['email']
 	return render_template('action.html', firstname=temp1, lastname=temp2, email=temp3)
 
+@app.route('/login')
+def login_form():
+	return render_template('login.html')
+
+@app.route('/login', methods = ['POST'])
+
+def login():
+    if request.method == 'POST':
+        if(request.form['id'] == 'admin' and request.form['pw'] == 'admin123'):
+            session['logged'] = True
+            #session['user'] = request.form['id']
+            #return 'Hi, ' + request.form['id']
+            return render_template('logout.html')#수은 수정 logout.html
+        else:
+            return """<script>alert("wrong!");location.href='/login';</script>"""
+    else:
+        return """<script>alert("not allowd!");location.href='/login';</script>"""
+
+@app.route('/logout')#수은 수정 logout 구현
+def logout():
+	session.clear()
+	return redirect(url_for('login'))
+	#return index()
+
+
+
+app.secret_key = 'sample_secret'
 
 if __name__=="__main__":
 	app.run(host='0.0.0.0', debug=True)
