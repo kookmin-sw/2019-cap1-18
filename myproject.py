@@ -1,16 +1,23 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bootstrap import Bootstrap
+import pymongo
 
 app = Flask(__name__)
 Bootstrap(app)
+
 
 @app.route("/")
 #def hello():
 	#return "<h1 style='color:blue'>Hello World2!</h1>"
 
 @app.route('/')
-def bootstrap():
-    return render_template('main.html')
+def homepage():
+    client = pymongo.MongoClient('mongodb://localhost:27017')
+    db = client.dust
+    collection = db.recent
+    results = collection.find()
+    client.close()
+    return render_template('main.html', recentData=results)
 
 
 @app.route("/about")
@@ -68,7 +75,6 @@ def logout():
 	session.clear()
 	return redirect(url_for('login'))
 	#return index()
-
 
 
 app.secret_key = 'sample_secret'
