@@ -24,7 +24,9 @@ while True:
 	pub_data="{0},{1}".format(count, data[data_size])
 
 #mqtt publisher
-	client2.publish("vds1/data",pub_data)
+	client2.publish("raspberry/data",pub_data)
 
 	print("Data Spend")
 	print("[{0}] {1}".format(count, data[data_size]))
+
+    data.close()
