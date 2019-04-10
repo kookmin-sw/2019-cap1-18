@@ -3,6 +3,15 @@
 {% block content %}
 <div>
 
+
+{% if recentData[0].internalData.pm10 < 100 %}
+<img src="http://poooo.ml/data/editor/1809/99704f09b9ae3fa1ed68f3bb56b18494_1536862067_0885.gif">{{recentData[0].internalData.pm10}}!!<br>
+{% else %}
+<img src="https://media1.tenor.com/images/d278f33e1e8305c98f8f6cc8fb40d5ae/tenor.gif?itemid=10744149">{{recentData[0].internalData.pm10}}<br>
+{% endif %}
+
+
+
   <h1>Recent Data</h1>
   <table class="table table-striped">
     <thead>
@@ -28,6 +37,8 @@
       {% endfor %}
     </tbody>
   </table>
+
+
 
   <div>
     <article>
