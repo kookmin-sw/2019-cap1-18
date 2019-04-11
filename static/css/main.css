@@ -61,6 +61,20 @@ div.result {
   margin-top: -150px;
 }
 
+div.image{
+  width: 150px;
+  height: 400px;
+  left: 250;
+  top:120;
+  position: relative;
+}
+div.image.text{
+  z-index: 100;
+  position: absolute;
+  top:350px%;
+  left:150px%;
+}
+
 h1 {
   text-align: center;
 }
