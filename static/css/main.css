@@ -71,8 +71,8 @@ div.image{
 div.image.text{
   z-index: 100;
   position: absolute;
-  top:350px%;
-  left:150px%;
+  top:350px;
+  left:150px;
 }
 
 h1 {
