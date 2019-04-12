@@ -15,11 +15,35 @@
       <title>Mini BuT</title>
      {% endif %}
      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
 
 
+<style>
+
+  .imagebox{
+  width:350px;
+  margin: 10px auto;
+ /* border: 1px solid #000000;*/
+  position: relative;
+}
+
+.dataimage{
+  width: 350px;
+  vertical-align: middle;
+}
+
+.imagetext{
+  padding: 400px 100px;
+  text-align: center;
+  position: absolute;
+  top: 70%;
+  left: 120px;
+  width : 150px;
+  transform: translate(-50%,-50%);
+}
+ </style>
     </head>
- 
+
   <body>
 
     <header>
