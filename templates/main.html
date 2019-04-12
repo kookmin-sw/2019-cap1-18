@@ -3,24 +3,36 @@
 {% block content %}
 
 
-<!--<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">  뭔지 모름 -->
-
 <br>
 <br>
-
-{% if recentData[0].internalData.pm10 < 100 %}
-
 <div class = "imagebox">
-  <div class = "dataimage">
-    <img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600"></div>
-    <div class="imagetext">
-        <p style="width: 100px">미세먼지 수치 : {{recentData[0].internalData.pm10}}</p>
-    </div>
-  </div>
+  <div class = "dataimage" style="float: left">
+{% if recentData[0].internalData.pm10 < 100 %}
+    <img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600">
+
 {% else %}
 
 
 {% endif %}
+    <div class="imagetext">
+        <p style="width: 100px">미세먼지 수치 : {{recentData[0].internalData.pm10}}</p>
+    </div>
+    </div>
+
+
+  <div class = "dataimage">
+{% if recentData[0].internalData.pm10 < 100 %}
+    <img src="https://i.ibb.co/YWz35r9/image.png" width="350" height="600">
+
+{% else %}
+
+
+{% endif %}
+    <div class="imagetext">
+        <p style="width: 100px">미세먼지 수치 : {{recentData[0].internalData.pm10}}</p>
+    </div>
+  </div>
+</div>
 
 
 <!--
