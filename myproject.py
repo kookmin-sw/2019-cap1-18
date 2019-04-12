@@ -19,7 +19,18 @@ def homepage():
     client.close()
     return render_template('main.html', recentData=results)
 
-@app.route('/testchart')
+
+@app.route('/testimage')
+def test_image2():
+    client = pymongo.MongoClient('mongodb://localhost:27017')
+    db = client.dust
+    ecollection = db.externaldust
+    eresults = ecollection.find() 
+    client.close()
+    return render_template('test_image.html', testData=eresults)
+
+
+@app.route('/details')
 def test_chart():
     client = pymongo.MongoClient('mongodb://localhost:27017')
     db = client.dust
@@ -28,12 +39,8 @@ def test_chart():
     iresults = icollection.find()
     eresults = ecollection.find() 
     client.close()
-    return render_template('test_chart.html', iData=iresults, eData=eresults)
+    return render_template('details.html', iData=iresults, eData=eresults, title='Details')
 
-
-@app.route("/about")
-def about():
-	return render_template('about.html', title='About')
 
 """@app.route('/success/<name>')
 def success(name):

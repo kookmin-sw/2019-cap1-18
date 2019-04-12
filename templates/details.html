@@ -1,0 +1,38 @@
+
+{% extends 'layout.html' %}
+ 
+{% block content %}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<div>
+    <canvas id="myChart">
+    </canvas>
+</div>
+<script>
+	var DBpm10 = ['{{eData[0].pm10}}', '{{eData[1].pm10}}'];
+	var DBdate = ['{{eData[0].date}}', '{{eData[1].date}}']
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var data = {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: ["-30분", "-25분", "-20분", "-15분", "-10분", DBdate[1], DBdate[0]],
+            datasets: [{
+                label: "미세먼지 그래프",
+                backgroundColor: 'rgb(255, 99, 132)', //점 색깔
+                borderColor: 'rgb(255, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: [0,0,0,0,0,DBpm10[1],DBpm10[0]],
+            }]
+        },
+        options: {}
+    }
+    var chart = new Chart(ctx, data);
+</script>
+
+
+{% endblock %}
