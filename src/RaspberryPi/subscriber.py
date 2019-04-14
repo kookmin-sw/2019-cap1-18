@@ -15,6 +15,6 @@ def on_message(client, userdata, message):
 broker_address="192.168.2.9"
 client1 = mqtt.Client("ClientSubscriber")
 client1.connect(broker_address)
-client1.subscribe("sever/data")
+client1.subscribe("userID/server")
 client1.on_message = on_message
 client1.loop_forever()
