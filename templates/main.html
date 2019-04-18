@@ -7,15 +7,14 @@
 <br>
 <div class = "imagebox">
   <div class = "dataimage" style="float: left">
-{% if recentData[0].internalData.pm10 < 100 %}
+{% if recentData[0].internalData.pm10 < 25 %}
     <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600">
-
-{%elif recentData[0].internalData.pm10 <200%}
+{%elif recentData[0].internalData.pm10 < 75%}
     <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/wc5CHhV/image.png" width="350" height="600">
-
+{%elif recentData[0].internalData.pm10 < 145%}
+     <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
 {% else %}
     <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
-
 {% endif %}
     <div class="imagetext">
         <p style="width: 170px; color:white" ><font size="3">미세먼지 수치 : {{recentData[0].internalData.pm10}}</font></p>
@@ -25,12 +24,14 @@
 
 
   <div class = "dataimage">
-{% if recentData[0].internalData.pm10 < 100 %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/YWz35r9/image.png" width="350" height="600">
-{%elif recentData[0].internalData.pm10 <200%}
+{% if recentData[1].internalData.pm10 < 30 %}
+    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/P5yWjsz/image.png " width="350" height="600">
+{%elif recentData[1].internalData.pm10 <80 %}
+    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
+{%elif recentData[1].internalData.pm10 <150 %}
     <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
 {% else %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/P5yWjsz/image.png " width="350" height="600">
+    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/YWz35r9/image.png " width="350" height="600">
 
 {% endif %}
     <div class="imagetext">
