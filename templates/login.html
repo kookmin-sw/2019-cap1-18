@@ -3,14 +3,28 @@
 {% block content %}
 
 
+	<div class="container">
+		<h2>로그인하세요.</h2>
 		<form method="post" action="/login">
 
-			<h2> try login. </h2>
+	  	 	<div class="form-group">
+	  	 		<label>ID</label>
+	  			<input type="text" class="form-control" name="id" placeholder="Username"> 
+	  		</div>
 
-			<input type = "text" name ="id" placeholder="Username">
-			<input type = "password" name="pw" placeholder="password">
-			<button type="submit">login</button>
+	  	 	<div class="form-group">
+	  	 		<label>PW</label>
+	  			<input type="password" class="form-control" name="pw" placeholder="password"> 
+	  		</div>
+
+			<!--<input type = "text" name ="id" placeholder="Username">
+			<input type = "password" name="pw" placeholder="password">-->
+	  		<div class="form-group">	
+	  			<input type="submit" class="btn btn-primary" value="Login">
+	  		</div>
+			<!--<button type="submit">login</button>-->
 
 		</form>
+	</div>
 
 {% endblock %}
