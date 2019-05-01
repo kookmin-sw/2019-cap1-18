@@ -1,30 +1,20 @@
 {% extends 'layout.html' %}
- 
 {% block content %}
-
-
-	<div class="container">
-		<h2>로그인하세요.</h2>
-		<form method="post" action="/login">
-
-	  	 	<div class="form-group">
-	  	 		<label>ID</label>
-	  			<input type="text" class="form-control" name="id" placeholder="Username"> 
-	  		</div>
-
-	  	 	<div class="form-group">
-	  	 		<label>PW</label>
-	  			<input type="password" class="form-control" name="pw" placeholder="password"> 
-	  		</div>
-
-			<!--<input type = "text" name ="id" placeholder="Username">
-			<input type = "password" name="pw" placeholder="password">-->
-	  		<div class="form-group">	
-	  			<input type="submit" class="btn btn-primary" value="Login">
-	  		</div>
-			<!--<button type="submit">login</button>-->
-
-		</form>
-	</div>
-
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+<!-- 로그인 실패시 메세지 -->
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+			<p style="color: red">{{ message }}</p><br>
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+<form action="/login" method="POST">
+  <input type="username" name="username" placeholder="Username">
+  <input type="password" name="password" placeholder="Password"><br>
+  <input type="submit" value="Log in">
+</form>
+{% endif %}
 {% endblock %}

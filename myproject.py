@@ -1,16 +1,27 @@
-from flask import Flask, render_template, request, url_for, redirect, session
+
+
+from flask import Flask,flash, render_template, request, url_for, redirect, session, abort
 from flask_bootstrap import Bootstrap
 import pymongo
+import os
 
 app = Flask(__name__)
 Bootstrap(app)
 
 
-@app.route("/")
-#def hello():
-	#return "<h1 style='color:blue'>Hello World2!</h1>"
+@app.route('/', methods=["GET"])
+@app.route('/index', methods=["GET"])
+def index():
+	if not session.get('logged_in'): #로그인 되어 있지 않으면 로그인 페이지로 이동
+		return render_template('login.html')
+	else:
+		return render_template('logout.html') #임시
 
-@app.route('/')
+
+
+
+
+@app.route('/main')
 def homepage():
     client = pymongo.MongoClient('mongodb://localhost:27017')
     db = client.dust
@@ -70,32 +81,30 @@ def action():
 	##email = request.form['email']
 	return render_template('action.html', firstname=temp1, lastname=temp2, email=temp3)
 
-@app.route('/login')
-def login_form():
-	return render_template('login.html')
+#@app.route('/login')
+#def login_form():
+	#return render_template('login.html')
 
-@app.route('/login', methods = ['POST'])
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+	#폼에서 넘어온 데이터를 가져와 정해진 유저네임과 암호를 비교하고 참이면 세션을 저장한다.
+	#회원정보를 DB구축해서 추출하서 비교하는 방법으로 구현 가능 - 여기서는 바로 적어 줌
+	if request.form['password'] == 'password' and request.form['username'] == 'admin' :
+		session['logged_in'] = True #세선 해제는 어떻게?
+	else:
+		flash('유저네임이나 암호가 맞지 않습니다.')
+	return index()
 
-def login():
-    if request.method == 'POST':
-        if(request.form['id'] == 'admin' and request.form['pw'] == 'admin123'):
-            session['logged'] = True
-            #session['user'] = request.form['id']
-            #return 'Hi, ' + request.form['id']
-            return render_template('logout.html')#수은 수정 logout.html
-        else:
-            return """<script>alert("wrong!");location.href='/login';</script>"""
-    else:
-        return """<script>alert("not allowd!");location.href='/login';</script>"""
-
-@app.route('/logout')#수은 수정 logout 구현
+@app.route('/logout')
 def logout():
 	session.clear()
-	return redirect(url_for('login'))
-	#return index()
+	#return redirect(url_for('index'))
+	return index()
 
-
+if __name__ == '__main__':
+	app.secret_key = os.urandom(24) #좀 더 알아 볼것. 시크릿키는 세션등의 기능을 위해 반드시 필요하다.
+	app.run(debug=True, host='0.0.0.0')
 app.secret_key = 'sample_secret'
 
-if __name__=="__main__":
-	app.run(host='0.0.0.0', debug=True)
+#if __name__=="__main__":
+	#app.run(host='0.0.0.0', debug=True)
