@@ -1,23 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
-{% if session['logged_in'] %}
-<p>You're logged in already!</p>
-{% else %}
-<!-- 로그인 실패시 메세지 -->
-{% with messages = get_flashed_messages() %}
-	{% if messages %}
-		{% for message in messages %}
-			<br>
-			<br>
-			<p style="color: red; text-align: center">{{ message }}</p><br>
-		{% endfor %}
-	{% endif %}
-{% endwith %}
-<br>
+
+<p> WELCOME TO MINIBUT</p>
+
 <div class="container"style="padding:50px 20px; text-align:center">
-	<h2>로그인 하세요.</h2>
+	<h2>등록하세요.</h2>
 	<br>
-	<form role="form" action="/login" method="POST">
+	<form role="form" action="/join" method="POST">
 <!--<form action="/login" method="POST">-->
 		<div class="form-group">
   			<input type="username" class="form-control" name="username" placeholder="Username">
@@ -31,5 +20,4 @@
   			<input type="submit" class="btn btn-primary" value="Log in">
   		</div>
 </form>
-{% endif %}
 {% endblock %}

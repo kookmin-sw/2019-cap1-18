@@ -70,6 +70,11 @@ if __name__ == '__main__':
 @app.route('/test')
 def form():
 	return render_template('get.html')
+
+#@app.route('/join')
+#def form():
+#	return render_template('join.html')
+
 #form action
 @app.route('/hello', methods=['GET'] )
 def action():
