@@ -15,8 +15,8 @@ def index():
 	if not session.get('logged_in'): #로그인 되어 있지 않으면 로그인 페이지로 이동
 		return render_template('login.html')
 	else:
-		return render_template('logout.html') #임시
-
+		#return render_template('logout.html') #임시
+		return homepage()
 
 
 
@@ -28,7 +28,7 @@ def homepage():
     collection = db.recent
     results = collection.find()
     client.close()
-    return render_template('main.html', recentData=results)
+    return render_template('main.html', recentData=results, menu=1)
 
 
 @app.route('/testimage')
@@ -50,7 +50,7 @@ def test_chart():
     iresults = icollection.find()
     eresults = ecollection.find() 
     client.close()
-    return render_template('details.html', iData=iresults, eData=eresults, title='Details')
+    return render_template('details.html', iData=iresults, eData=eresults, title='Details', menu=2)
 
 
 """@app.route('/success/<name>')
@@ -69,12 +69,27 @@ if __name__ == '__main__':
 """
 @app.route('/test')
 def form():
-	return render_template('get.html')
+	return render_template('get.html', menu=3)
 
-#@app.route('/join')
-#def form():
-#	return render_template('join.html')
+@app.route('/join')
+def join():
+	return render_template('join.html', menu=4)
 
+@app.route('/joinus', methods=['POST'])
+def joinus():
+
+	newuserid = request.form['id']
+	newuserpw = request.form['pw']
+	newidnum = request.form['idnum']
+
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	collection = db.account
+
+	collection.insert({"id":newuserid, "pw":newuserpw, "idnum":newidnum})
+	client.close()
+
+	return render_template('joinus.html', firstname=newuserid)
 #form action
 @app.route('/hello', methods=['GET'] )
 def action():
