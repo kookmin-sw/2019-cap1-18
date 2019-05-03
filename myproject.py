@@ -109,10 +109,18 @@ def action():
 def do_admin_login():
 	#폼에서 넘어온 데이터를 가져와 정해진 유저네임과 암호를 비교하고 참이면 세션을 저장한다.
 	#회원정보를 DB구축해서 추출하서 비교하는 방법으로 구현 가능 - 여기서는 바로 적어 줌
-	if request.form['password'] == 'password' and request.form['username'] == 'admin' :
-		session['logged_in'] = True #세선 해제는 어떻게?
-	else:
-		flash('유저네임이나 암호가 맞지 않습니다.')
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	collection = db.account
+	
+	#found = collection.find({"$and":[{"id":request.form['username']}, {"password":request.form['password'] }]})
+	found = collection.find()
+	for doc in found:
+		li = list(doc.values())
+		if li[1] == request.form['username'] and li[2] == request.form['password'] :
+			session['logged_in'] = True
+
+	flash('유저네임이나 암호가 맞지 않습니다.')
 	return index()
 
 @app.route('/logout')
