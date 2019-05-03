@@ -50,17 +50,43 @@
                   <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Blue_square_M.PNG" alt="Logo" style="width:40px;">
                 </a>
               </li>
+                
+                  <li class="nav-item">
+                    {% if menu == 1 %}
+                    <a class="nav-link" style="color:red" href="/main">Main</a>
+                    {% else %}
+                    <a class="nav-link"  href="/main">Main</a>
+                    {% endif %}
+                  </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="/main">Main</a>
+                {% if menu == 2 %}
+                  <a class="nav-link" style="color:red" href="/details">Details</a>
+                {% else %}
+                  <a class="nav-link" href="/details">Details</a>                
+              {% endif %}
               </li>
+              
               <li class="nav-item">
-                <a class="nav-link" href="/details">Details</a>
+                {% if menu == 3 %}
+                  <a class="nav-link" style="color:red" href="/test">Set Data</a>
+                {% else %}
+                  <a class="nav-link" href="/test">Set Data</a>
+                {% endif %}
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="/test">Set Data</a>
+                {% if menu == 4 %}
+                  <a class="nav-link" style="color:red" href="/join">Join</a>
+                {% else %}
+                  <a class="nav-link"  href="/join">Join</a>
+                {% endif %}
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/join">Join</a>
+
+              <li>
+                {% if session['logged_in'] %}
+                  <input type="submit" onclick="location.href='/logout'"class="btn btn-primary" value="Log out">
+                {% endif %}
               </li>
             </ul>
 
