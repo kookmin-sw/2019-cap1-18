@@ -3,41 +3,67 @@
 {% block content %}
 
 <br>
-<div class = "imagebox">
-  <div class = "dataimage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
-    {% if recentData[4] < 25 %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600">
-    {% elif recentData[4] < 75 %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/wc5CHhV/image.png" width="350" height="600">
-    {% elif recentData[4] < 145 %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
-    {% else %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
-    {% endif %}
-    <div class="imagetext">
-      <p style="width: 170px; color:white" ><font size="3">미세먼지 수치 : {{recentData[4]}}</font></p>
-      <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[6]}}</font></p>
-    </div>
-    </div>
+{% if data == 1 %}
+  <div class = "imagebox">
+    <div class = "dataimage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
+      {% if recentData[4] < 25 %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600">
+      {% elif recentData[4] < 75 %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/wc5CHhV/image.png" width="350" height="600">
+      {% elif recentData[4] < 145 %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
+      {% else %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
+      {% endif %}
+      <div class="imagetext">
+        <p style="width: 170px; color:white" ><font size="3">미세먼지 수치 : {{recentData[4]}}</font></p>
+        <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[6]}}</font></p>
+      </div>
+      </div>
 
 
-  <div class = "dataimage">
-    {% if recentData[11] < 30 %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/P5yWjsz/image.png " width="350" height="600">
-    {% elif recentData[11] < 80 %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
-    {% elif recentData[11] < 150 %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
-    {% else %}
-      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/YWz35r9/image.png " width="350" height="600">
-    {% endif %}
-    <div class="imagetext">
-      <p style="width: 170px; color:white"><font size="3">미세먼지 수치 : {{recentData[11]}}</font></p>
-      <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[13]}}</font></p>
+    <div class = "dataimage">
+      {% if recentData[11] < 30 %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/P5yWjsz/image.png " width="350" height="600">
+      {% elif recentData[11] < 80 %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
+      {% elif recentData[11] < 150 %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
+      {% else %}
+        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/YWz35r9/image.png " width="350" height="600">
+      {% endif %}
+      <div class="imagetext">
+        <p style="width: 170px; color:white"><font size="3">미세먼지 수치 : {{recentData[11]}}</font></p>
+        <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[13]}}</font></p>
+      </div>
     </div>
   </div>
-</div>
+
+{% endif %}
+
+{% if data == 0 %}
+
+  <div class = "imagebox">
+    <div class = "dataimage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
+ 
+        <<img src="https://cdn4.iconfinder.com/data/icons/communication-extras/512/Sad_Face-512.png" width="350" height="350">
+      <div class="imagetext">
+        <p style="width: 170px; color:red" ><font size="3">미세먼지 수치 : 실내 데이터 점검중</font></p>
+        <p style="width: 170px; color:red"><font size="3">초미세먼지 수치 : 실내 데이터 점검중</font></p>
+      </div>
+      </div>
 
 
+    <div class = "dataimage">
+        <img src="https://cdn4.iconfinder.com/data/icons/communication-extras/512/Sad_Face-512.png" width="350" height="350">
+     
+      <div class="imagetext">
+        <p style="width: 170px; color:red"><font size="3">미세먼지 수치 : 실외 데이터 점검중</font></p>
+        <p style="width: 170px; color:red"><font size="3">초미세먼지 수치 : 실외 데이터 점검중</font></p>
+      </div>
+    </div>
+  </div>
+
+{% endif %}
 
 {% endblock %}

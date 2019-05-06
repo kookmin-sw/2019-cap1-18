@@ -37,8 +37,8 @@ def homepage():
 			datalist = list(poc.values())
 			if acclist[3] == datalist[1]:	
 				client.close()
-				return render_template('main.html', recentData=datalist, menu=1)
-		return test_image2() #바꿔야돼!!!!!!!!!!!!!!!!!!!!!!
+				return render_template('main.html', recentData=datalist, menu=1, data=1)
+		return render_template('main.html', data=0) #바꿔야돼!!!!!!!!!!!!!!!!!!!!!!
 	else:
 		return index()
 
