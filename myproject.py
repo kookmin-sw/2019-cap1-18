@@ -19,16 +19,28 @@ def index():
 		return homepage()
 
 
-
+#userid = request.form[id]
 
 @app.route('/main')
 def homepage():
-    client = pymongo.MongoClient('mongodb://localhost:27017')
-    db = client.dust
-    collection = db.recent
-    results = collection.find()
-    client.close()
-    return render_template('main.html', recentData=results, menu=1)
+	if session.get('logged_in'):
+		client = pymongo.MongoClient('mongodb://localhost:27017')
+		db = client.dust
+		accountcollection = db.account
+		accountresults = accountcollection.find({"idnum":session["idnum"]})
+		collection = db.recent
+		results = collection.find({"idnum":session["idnum"]})
+		
+		for doc in accountresults:
+			acclist = list(doc.values())
+		for poc in results:
+			datalist = list(poc.values())
+			if acclist[3] == datalist[1]:	
+				client.close()
+				return render_template('main.html', recentData=datalist, menu=1)
+		return test_image2() #바꿔야돼!!!!!!!!!!!!!!!!!!!!!!
+	else:
+		return index()
 
 
 @app.route('/testimage')
@@ -43,15 +55,17 @@ def test_image2():
 
 @app.route('/details')
 def test_chart():
-    client = pymongo.MongoClient('mongodb://localhost:27017')
-    db = client.dust
-    icollection = db.internaldust
-    ecollection = db.externaldust
-    iresults = icollection.find()
-    eresults = ecollection.find() 
-    client.close()
-    return render_template('details.html', iData=iresults, eData=eresults, title='Details', menu=2)
-
+	if session.get('logged_in'):
+		client = pymongo.MongoClient('mongodb://localhost:27017')
+		db = client.dust
+		icollection = db.internaldust
+		ecollection = db.externaldust
+		iresults = icollection.find()
+		eresults = ecollection.find() 
+		client.close()
+		return render_template('details.html', iData=iresults, eData=eresults, title='Details', menu=2)
+	else:
+		return index()
 
 """@app.route('/success/<name>')
 def success(name):
@@ -119,6 +133,7 @@ def do_admin_login():
 		li = list(doc.values())
 		if li[1] == request.form['username'] and li[2] == request.form['password'] :
 			session['logged_in'] = True
+			session['idnum'] = request.form['idnum']
 
 	flash('유저네임이나 암호가 맞지 않습니다.')
 	return index()
