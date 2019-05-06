@@ -2,73 +2,42 @@
 
 {% block content %}
 
-
-<br>
 <br>
 <div class = "imagebox">
-  <div class = "dataimage" style="float: left">
-{% if recentData[0].internalData.pm10 < 25 %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600">
-{%elif recentData[0].internalData.pm10 < 75%}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/wc5CHhV/image.png" width="350" height="600">
-{%elif recentData[0].internalData.pm10 < 145%}
-     <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
-{% else %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
-{% endif %}
+  <div class = "dataimage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
+    {% if recentData[4] < 25 %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600">
+    {% elif recentData[4] < 75 %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/wc5CHhV/image.png" width="350" height="600">
+    {% elif recentData[4] < 145 %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
+    {% else %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
+    {% endif %}
     <div class="imagetext">
-        <p style="width: 170px; color:white" ><font size="3">미세먼지 수치 : {{recentData[0].internalData.pm10}}</font></p>
-        <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[0].internalData.pm10}}</font></p>
+      <p style="width: 170px; color:white" ><font size="3">미세먼지 수치 : {{recentData[4]}}</font></p>
+      <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[6]}}</font></p>
     </div>
     </div>
 
 
   <div class = "dataimage">
-{% if recentData[1].internalData.pm10 < 30 %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/P5yWjsz/image.png " width="350" height="600">
-{%elif recentData[1].internalData.pm10 <80 %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
-{%elif recentData[1].internalData.pm10 <150 %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
-{% else %}
-    <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/YWz35r9/image.png " width="350" height="600">
-
-{% endif %}
+    {% if recentData[11] < 30 %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/P5yWjsz/image.png " width="350" height="600">
+    {% elif recentData[11] < 80 %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
+    {% elif recentData[11] < 150 %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
+    {% else %}
+      <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/YWz35r9/image.png " width="350" height="600">
+    {% endif %}
     <div class="imagetext">
-        <p style="width: 170px; color:white"><font size="3">미세먼지 수치 : {{recentData[0].internalData.pm10}}</font></p>
-        <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[0].internalData.pm10}}</font></p>
+      <p style="width: 170px; color:white"><font size="3">미세먼지 수치 : {{recentData[11]}}</font></p>
+      <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[13]}}</font></p>
     </div>
   </div>
 </div>
 
 
-<!--
-  <h1>Recent Data</h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>이름</th>
-        <th width="80px">위도</th>
-        <th width="80px">경도</th>
-        <th width="80px">pm10</th>
-        <th width="80px">pm2.5</th>
-        <th>측정 시간</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for i in recentData %}
-        <tr>
-          <td>{{i.userid}}</td>
-          <td>{{i.internalAddress.lat}}</td>
-          <td>{{i.internalAddress.lng}}</td>
-          <td>{{i.internalData.pm10}}</td>
-          <td>{{i.internalData.pm25}}</td>
-          <td>{{i.internalData.date}}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
--->
 
 {% endblock %}
