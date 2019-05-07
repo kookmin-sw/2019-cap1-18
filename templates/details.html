@@ -4,32 +4,103 @@
 {% block content %}
 
 
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<div>
-    <canvas id="myChart">
-    </canvas>
+<!--
+<div style="position:relative; width:1100px; height:700px;">
+-->
+<div class="imagebox">
+  <div class = "chart">
+  <canvas id="myChart1"></canvas></div>
+  <div class = "chart">
+  <canvas id="myChart2"></canvas></div>
 </div>
 <script>
-	var DBpm10 = ['{{eData[0].pm10}}', '{{eData[1].pm10}}'];
-	var DBdate = ['{{eData[0].date}}', '{{eData[1].date}}']
+    var eDBpm10 = ['{{eData[0].pm10}}', '{{eData[1].pm10}}'];
+    var eDBpm25 = ['{{eData[0].pm25}}', '{{eData[1].pm25}}'];
+    var eDBdate = ['{{eData[0].date}}', '{{eData[1].date}}'];
 
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('myChart1').getContext('2d');
     var data = {
         // The type of chart we want to create
         type: 'line',
         // The data for our dataset
         data: {
-            labels: ["-30분", "-25분", "-20분", "-15분", "-10분", DBdate[1], DBdate[0]],
+            labels: ["-30분", "-25분", "-20분", "-15분", "-10분", eDBdate[1], eDBdate[0]],
             datasets: [{
-                label: "미세먼지 그래프",
+                label: "실외 PM10",
                 backgroundColor: 'rgb(255, 99, 132)', //점 색깔
                 borderColor: 'rgb(255, 99, 132)', //선 색깔
                 fill:false,
                 //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
-                data: [0,0,0,0,0,DBpm10[1],DBpm10[0]],
+                data: [0,0,0,0,0,eDBpm10[1],eDBpm10[0]],
+            }, {
+                label: "실외 PM2.5",
+                backgroundColor: 'rgb(0, 99, 132)', //점 색깔
+                borderColor: 'rgb(0, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: [0,0,0,0,0,eDBpm25[1],eDBpm25[0]],
             }]
         },
-        options: {}
+
+        options: {
+            scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    max: 200, //y axis
+                    min: 0,
+                    stepSize: 20
+                    }
+                }]
+            }
+        }
+    }
+    var chart = new Chart(ctx, data);
+
+
+    var iDBpm10 = ['{{iData[0].pm10}}', '{{iData[1].pm10}}'];
+    var iDBpm25 = ['{{iData[0].pm25}}', '{{iData[1].pm25}}'];
+    var iDBdate = ['{{iData[0].date}}', '{{iData[1].date}}'];
+
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var data = {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: ["-30분", "-25분", "-20분", "-15분", "-10분", iDBdate[1], iDBdate[0]],
+            datasets: [{
+                label: "실내 PM10",
+                backgroundColor: 'rgb(255, 99, 132)', //점 색깔
+                borderColor: 'rgb(255, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: [0,0,0,0,0,iDBpm10[1],iDBpm10[0]],
+            }, {
+                label: "실내 PM2.5",
+                backgroundColor: 'rgb(0, 99, 132)', //점 색깔
+                borderColor: 'rgb(0, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: [0,0,0,0,0,iDBpm25[1],iDBpm25[0]],
+            }]
+        },
+
+        options: {
+            scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    max: 200,
+                    min: 0,
+                    stepSize: 20
+                    }
+                }]
+            }
+        }
     }
     var chart = new Chart(ctx, data);
 </script>
