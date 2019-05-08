@@ -7,34 +7,34 @@
   <div class = "imagebox">
     <div class = "dataimage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
       {% if recentData[4] < 25 %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/0yrGRMD/image.png" width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EC%A2%8B%EC%9D%8C.png" width="350" height="600">
       {% elif recentData[4] < 75 %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/wc5CHhV/image.png" width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EB%B3%B4%ED%86%B5.png" width="350" height="600">
       {% elif recentData[4] < 145 %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EB%82%98%EC%81%A8.png" width="350" height="600">
       {% else %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/R2NkkBP/image.png" width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EB%82%98%EC%81%A8.png" width="350" height="600">
       {% endif %}
       <div class="imagetext">
-        <p style="width: 170px; color:white" ><font size="3">미세먼지 수치 : {{recentData[4]}}</font></p>
-        <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[6]}}</font></p>
+        <p style="width: 170px; color:black" ><font size="3">미세먼지 수치 : {{recentData[4]}}</font></p>
+        <p style="width: 170px; color:black"><font size="3">초미세먼지 수치 : {{recentData[6]}}</font></p>
       </div>
       </div>
 
 
     <div class = "dataimage">
       {% if recentData[11] < 30 %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/P5yWjsz/image.png " width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EC%A2%8B%EC%9D%8C.png" width="350" height="600">
       {% elif recentData[11] < 80 %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EB%B3%B4%ED%86%B5.png" width="350" height="600">
       {% elif recentData[11] < 150 %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/mqZbZF9/image.png" width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EB%82%98%EC%81%A8.png" width="350" height="600">
       {% else %}
-        <a href="http://54.180.181.189/details"><img src="https://i.ibb.co/YWz35r9/image.png " width="350" height="600">
+        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EB%82%98%EC%81%A8.png" width="350" height="600">
       {% endif %}
       <div class="imagetext">
-        <p style="width: 170px; color:white"><font size="3">미세먼지 수치 : {{recentData[11]}}</font></p>
-        <p style="width: 170px; color:white"><font size="3">초미세먼지 수치 : {{recentData[13]}}</font></p>
+        <p style="width: 170px; color:black"><font size="3">미세먼지 수치 : {{recentData[11]}}</font></p>
+        <p style="width: 170px; color:black"><font size="3">초미세먼지 수치 : {{recentData[13]}}</font></p>
       </div>
     </div>
   </div>

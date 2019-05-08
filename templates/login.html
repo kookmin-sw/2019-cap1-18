@@ -14,20 +14,28 @@
 	{% endif %}
 {% endwith %}
 <br>
-<div class="container"style="padding:50px 20px; text-align:center">
-	<h2>로그인 하세요.</h2>
+
+<!--<div class="bg">-->
+
+
+<div class="container" style="padding:50px 20px; text-align:center">
+
+  <div class="bg" style="opacity: 0.5">
+    <img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/logo/%EB%A1%9C%EA%B3%A0%201.png" alt="">
+  </div>
+  <br>
+	<h2 style="text-align: center">로그인 하세요.</h2>
 	<br>
 	<form role="form" action="/login" method="POST">
-<!--<form action="/login" method="POST">-->
-		<div class="form-group">
-  			<input type="username" class="form-control" name="username" placeholder="Username">
+<!--<form action="/login" thod="POST">-->
+		<div class="form-group" style="margin:0 auto">
+  			<input type="username" style="width:250px; vertical-align: middle" class="form-control" name="username" placeholder="Username"><br>
   		</div>
   		<div class="form-group">
-  			<input type="password" class="form-control" name="password" placeholder="Password"><br>
+  			<input type="password" style="width:250px; vertical-align: middle" class="form-control" name="password" placeholder="Password"><br>
   		</div>
-
   		<div class="form-group">
-  			<input type="password" class="form-control" name="idnum" placeholder="고유번호"><br>
+  			<input type="password" style="width:250px; vertical-align: middle"class="form-control" name="idnum" placeholder="고유번호"><br>
   		</div>  		
   		<br>
   		<br>
@@ -35,5 +43,7 @@
   			<input type="submit" class="btn btn-primary" value="Log in">
   		</div>
 </form>
+</div> 
+
 {% endif %}
 {% endblock %}
