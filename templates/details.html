@@ -3,23 +3,32 @@
  
 {% block content %}
 
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<!--
-<div style="position:relative; width:1100px; height:700px;">
--->
+
+
+
 <div class="imagebox">
   <div class = "chart">
+    <button clsas="btn" id="toggleScale">Toggle Scale</button>
+    <button clsas="btn" id="toggleSize">Toggle Size</button>
   <canvas id="myChart1"></canvas></div>
   <div class = "chart">
   <canvas id="myChart2"></canvas></div>
 </div>
+
+
+
 <script>
-    var eDBpm10 = ['{{eData[0].pm10}}', '{{eData[1].pm10}}'];
-    var eDBpm25 = ['{{eData[0].pm25}}', '{{eData[1].pm25}}'];
-    var eDBdate = ['{{eData[0].date}}', '{{eData[1].date}}'];
+    var myScale = 100;
+    var mySize = 7;
+
+    var eDBpm10 = {{ epm10 | tojson }}.reverse();
+    var eDBpm25 = {{ epm25 | tojson }}.reverse();
+    var eDBdate = {{ edate | tojson }}.reverse();
+
+    eDBpm10.length = mySize;
+    eDBpm25.length = mySize;
+    eDBdate.length = mySize;
 
     var ctx = document.getElementById('myChart1').getContext('2d');
     var data = {
@@ -27,21 +36,22 @@
         type: 'line',
         // The data for our dataset
         data: {
-            labels: ["-30분", "-25분", "-20분", "-15분", "-10분", eDBdate[1], eDBdate[0]],
+
+            labels: eDBdate,
             datasets: [{
                 label: "실외 PM10",
                 backgroundColor: 'rgb(255, 99, 132)', //점 색깔
                 borderColor: 'rgb(255, 99, 132)', //선 색깔
                 fill:false,
                 //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
-                data: [0,0,0,0,0,eDBpm10[1],eDBpm10[0]],
+                data: eDBpm10,
             }, {
                 label: "실외 PM2.5",
                 backgroundColor: 'rgb(0, 99, 132)', //점 색깔
                 borderColor: 'rgb(0, 99, 132)', //선 색깔
                 fill:false,
                 //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
-                data: [0,0,0,0,0,eDBpm25[1],eDBpm25[0]],
+                data: eDBpm25,
             }]
         },
 
@@ -50,7 +60,7 @@
             yAxes: [{
                 ticks: {
                     beginAtZero:true,
-                    max: 200, //y axis
+                    max: myScale, //y axis
                     min: 0,
                     stepSize: 20
                     }
@@ -65,8 +75,8 @@
     var iDBpm25 = ['{{iData[0].pm25}}', '{{iData[1].pm25}}'];
     var iDBdate = ['{{iData[0].date}}', '{{iData[1].date}}'];
 
-    var ctx = document.getElementById('myChart2').getContext('2d');
-    var data = {
+    var ctx2 = document.getElementById('myChart2').getContext('2d');
+    var data2 = {
         // The type of chart we want to create
         type: 'line',
         // The data for our dataset
@@ -102,7 +112,45 @@
             }
         }
     }
-    var chart = new Chart(ctx, data);
+    var chart2 = new Chart(ctx2, data2);
+
+
+
+    document.getElementById('toggleScale').addEventListener('click', function() {
+        myScale = myScale === 100 ? 200 : 100;
+
+        chart.options.scales.yAxes[0].ticks = {
+            beginAtZero: true,
+            max: myScale,
+            min: 0,
+            stepSize: 20
+        };
+
+        chart.update();
+    });
+
+    document.getElementById('toggleSize').addEventListener('click', function() {
+        mySize = mySize === 7 ? 20 : 7;
+
+        eDBpm10.length = mySize;
+        eDBpm25.length = mySize;
+        eDBdate.length = mySize;
+
+        eDBpm10 = {{ epm10 | tojson }}.reverse();
+        eDBpm25 = {{ epm25 | tojson }}.reverse();
+        eDBdate = {{ edate | tojson }}.reverse();
+
+        eDBpm10.length = mySize;
+        eDBpm25.length = mySize;
+        eDBdate.length = mySize;
+
+        chart.data.labels=eDBdate;
+        chart.data.datasets[0].data=eDBpm10;
+        chart.data.datasets[1].data=eDBpm25;
+
+        chart.update();
+    });
+
 </script>
 
 

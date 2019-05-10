@@ -1,5 +1,3 @@
-
-
 from flask import Flask,flash, render_template, request, url_for, redirect, session, abort
 from flask_bootstrap import Bootstrap
 import pymongo
@@ -10,7 +8,6 @@ Bootstrap(app)
 
 
 @app.route('/', methods=["GET"])
-@app.route('/index', methods=["GET"])
 def index():
 	if not session.get('logged_in'): #로그인 되어 있지 않으면 로그인 페이지로 이동
 		return render_template('login.html')
@@ -30,42 +27,45 @@ def homepage():
 		accountresults = accountcollection.find({"idnum":session["idnum"]})
 		collection = db.recent
 		results = collection.find({"idnum":session["idnum"]})
+		client.close()
+
 		
 		for doc in accountresults:
 			acclist = list(doc.values())
 		for poc in results:
 			datalist = list(poc.values())
 			if acclist[3] == datalist[1]:	
-				client.close()
 				return render_template('main.html', recentData=datalist, menu=1, data=1)
 		return render_template('main.html', data=0) #바꿔야돼!!!!!!!!!!!!!!!!!!!!!!
 	else:
 		return index()
 
 
-@app.route('/testimage')
-def test_image2():
-    client = pymongo.MongoClient('mongodb://localhost:27017')
-    db = client.dust
-    ecollection = db.externaldust
-    eresults = ecollection.find() 
-    client.close()
-    return render_template('test_image.html', testData=eresults)
-
-
 @app.route('/details')
-def test_chart():
-	if session.get('logged_in'):
+def details():
+	if not session.get('logged_in'):
 		client = pymongo.MongoClient('mongodb://localhost:27017')
 		db = client.dust
 		icollection = db.internaldust
 		ecollection = db.externaldust
-		iresults = icollection.find()
-		eresults = ecollection.find() 
+		iresults = icollection.find().sort("_id",-1).limit(24)
+		eresults = ecollection.find().sort("_id",-1).limit(24)
 		client.close()
-		return render_template('details.html', iData=iresults, eData=eresults, title='Details', menu=2)
+
+		pm10 = []
+		pm25 = []
+		date = []
+
+		for doc in eresults:
+			li = list(doc.values())
+			pm10.append(li[4])
+			pm25.append(li[6])
+			date.append(li[8])
+
+		return render_template('test_chart.html', epm10=pm10, epm25=pm25, edate=date, iData=iresults, title='Details', menu=2)
 	else:
 		return index()
+
 
 """@app.route('/success/<name>')
 def success(name):
@@ -83,7 +83,35 @@ if __name__ == '__main__':
 """
 @app.route('/test')
 def form():
-	return render_template('get.html', menu=3)
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	collection = db.setting
+
+	found = collection.find_one({"idnum":session["idnum"]})
+	client.close()
+
+	return render_template('control.html', menu=3, userValue=found['userValue'], optSet=found['optSet'])
+
+
+
+@app.route('/control', methods=['POST'])
+def control():
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	collection = db.setting
+
+	collection.update({"idnum":session["idnum"]}, {"$set": {"userValue":request.form['userValue']}})
+
+	
+	if request.form.get('optset') == 'on':
+		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":'true'}})	
+	else:
+		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":'false'}})
+
+	client.close()
+	return form()
+
+
 
 @app.route('/join')
 def join():
@@ -119,8 +147,8 @@ def action():
 #def login_form():
 	#return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
-def do_admin_login():
+@app.route('/index', methods=['POST'])
+def login():
 	#폼에서 넘어온 데이터를 가져와 정해진 유저네임과 암호를 비교하고 참이면 세션을 저장한다.
 	#회원정보를 DB구축해서 추출하서 비교하는 방법으로 구현 가능 - 여기서는 바로 적어 줌
 	client = pymongo.MongoClient('mongodb://localhost:27017')
@@ -134,9 +162,14 @@ def do_admin_login():
 		if li[1] == request.form['username'] and li[2] == request.form['password'] :
 			session['logged_in'] = True
 			session['idnum'] = request.form['idnum']
+			session['username'] = request.form['username']
+
 
 	flash('유저네임이나 암호가 맞지 않습니다.')
 	return index()
+
+
+
 
 @app.route('/logout')
 def logout():
