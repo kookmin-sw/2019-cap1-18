@@ -2,42 +2,117 @@
 
 {% block content %}
 
-<br>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Main</h1>
+  <p class="mb-4">메인입니다</p>
+
+  <div class="row">
+
+    <div class="col-xl-8 col-lg-7">
+
 {% if data == 1 %}
-  <div class = "imagebox">
-    <div class = "dataimage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
-      {% if recentData[4] < 25 %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EC%A2%8B%EC%9D%8C.png" width="350" height="600">
-      {% elif recentData[4] < 75 %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EB%B3%B4%ED%86%B5.png" width="350" height="600">
-      {% elif recentData[4] < 145 %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EB%82%98%EC%81%A8.png" width="350" height="600">
-      {% else %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EC%9C%84%ED%97%98.png" width="350" height="600">
-      {% endif %}
-      <div class="imagetext">
-        <p style="width: 170px; color:black" ><font size="3">미세먼지 수치 : {{recentData[4]}}</font></p>
-        <p style="width: 170px; color:black"><font size="3">초미세먼지 수치 : {{recentData[6]}}</font></p>
-      </div>
+      <!-- 현재 미세먼지 -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">현재 미세먼지</h6>
+        </div>
+        <div class="card-body" style="text-align:center;">
+          <div class="chart-area" style="height:auto">
+            <div class = "imagebox">
+              <div class = "dataimage"><!--실내 최근 미세먼지 데이터 값-->
+                {% if recentData[4] < 25 %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EC%A2%8B%EC%9D%8C.png" style="left:3%;" width="300" height="400"></a>
+                {% elif recentData[4] < 75 %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EB%B3%B4%ED%86%B5.png" style="left:3%;" width="300" height="400"></a>
+                {% elif recentData[4] < 145 %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EB%82%98%EC%81%A8.png"style="left:3%;" width="300" height="400"></a>
+                {% else %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EC%9C%84%ED%97%98.png" style="left:3%;" width="300" height="400"></a>
+                {% endif %}
+                <div class="imagetext">
+                  <p style="width: 300px; color:black" ><font size="4" style="font-family: 'Do Hyeon', sans-serif;">미세먼지 수치 : </font><font size="5" style="font-family: 'Do Hyeon', sans-serif;">{{recentData[4]}}</font><font size="4" style="font-family: 'Do Hyeon', sans-serif;">㎛</font></p>
+                  <p style="width: 300px; color:black"><font size="4" style="font-family: 'Do Hyeon', sans-serif;">초미세먼지 수치 :</font><font size="5" style="font-family: 'Do Hyeon', sans-serif;">{{recentData[6]}}</font><font size="4" style="font-family: 'Do Hyeon', sans-serif;">㎛</font></p>
+                </div>
+              </div>
+
+              <div class = "dataimage">
+                {% if recentData[11] < 30 %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EC%A2%8B%EC%9D%8C.png" width="300" height="400"></a>
+                {% elif recentData[11] < 80 %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EB%B3%B4%ED%86%B5.png" width="300" height="400"></a>
+                {% elif recentData[11] < 150 %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EB%82%98%EC%81%A8.png" width="300" height="400"></a>
+                {% else %}
+                  <a href="/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EC%9C%84%ED%97%98.png" width="300" height="400"></a>
+                {% endif %}
+                <div class="imagetext">
+                  <p style="width: 300px; color:black"><font size="4" style="font-family: 'Do Hyeon', sans-serif;">미세먼지 수치 : </font><font size="5" style="font-family: 'Do Hyeon', sans-serif;">{{recentData[11]}}</font><font size="4" style="font-family: 'Do Hyeon', sans-serif;">㎛</font></p>
+                  <p style="width: 300px; color:black"><font size="4" style="font-family: 'Do Hyeon', sans-serif;">초미세먼지 수치 :</font><font size="5" style="font-family: 'Do Hyeon', sans-serif;">{{recentData[13]}}</font><font size="4" style="font-family: 'Do Hyeon', sans-serif;">㎛</font></p>
+                </div>
+              </div>
+            </div> <!--imagebox-->
+          </div>
+        </div>
       </div>
 
-
-    <div class = "dataimage">
-      {% if recentData[11] < 30 %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EC%A2%8B%EC%9D%8C.png" width="350" height="600">
-      {% elif recentData[11] < 80 %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EB%B3%B4%ED%86%B5.png" width="350" height="600">
-      {% elif recentData[11] < 150 %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EB%82%98%EC%81%A8.png" width="350" height="600">
-      {% else %}
-        <a href="http://54.180.181.189/details"><img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EC%9C%84%ED%97%98.png" width="350" height="600">
-      {% endif %}
-      <div class="imagetext">
-        <p style="width: 170px; color:black"><font size="3">미세먼지 수치 : {{recentData[11]}}</font></p>
-        <p style="width: 170px; color:black"><font size="3">초미세먼지 수치 : {{recentData[13]}}</font></p>
+      <!-- 지도 -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">지도</h6>
+        </div>
+        <div class="card-body">
+          <div class="chart-area" style="height:auto">
+            <div id="map" style="height:500px;"></div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+    </div> <!--col1-->
+
+    
+    <div class="col-xl-4 col-lg-5">
+      <!-- 도넛 차트 -->
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">통계</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <div class="chart-pie pt-4">
+            <canvas id="myPieChart1"></canvas>
+          </div>
+          <hr>
+          하루 통계입니다
+        </div>
+      </div>
+
+      <!-- 날씨 -->
+      <div class="card shadow mb-1" style="height:361px;">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">날씨</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body" style="padding:5px;">
+          <div class="chart-pie pt-4" style="padding-top:0!important;">
+            <div style="text-align:center;">
+              <table cellpadding=0 cellspacing=0 width=370 style="font-family:Arial;font-size:12px;"><tr><td><table width=100% cellpadding=0 cellspacing=0><tr><td width=8 height=30 background="https://rp5.ru/informer/htmlinfa/topshl.png"  bgcolor=#1294ca> </td><td width=* align=center background="https://rp5.ru/informer/htmlinfa/topsh.png" bgcolor=#1294ca><a style="color:#ffffff; font-family:Arial;font-size: 12px;" href="https://rp5.ru/12514/ko"><b>서울특별시</b></a></td><td width=8 height=30 background="https://rp5.ru/informer/htmlinfa/topshr.png" bgcolor=#1294ca> </td></tr></table></td></tr><tr><td valign=top style="padding:0;"><iframe src="https://rp5.ru/htmla.php?id=12514&lang=ko&um=00000&bg=%23669dc7&ft=%23ffffff&fc=%231294ca&c=%23000000&f=Arial&s=12&sc=4" width=100% height=267 frameborder=0 scrolling=no style="margin:0;"></iframe></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!--col2-->
+
+    
+  </div> <!--row-->
+
 
 {% endif %}
 
@@ -46,7 +121,7 @@
   <div class = "imagebox">
     <div class = "dataimage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
  
-        <<img src="https://cdn4.iconfinder.com/data/icons/communication-extras/512/Sad_Face-512.png" width="350" height="350">
+        <img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EB%82%B4%20%EC%97%86%EC%9D%8C.png" width="350" height="350">
       <div class="imagetext">
         <p style="width: 170px; color:red" ><font size="3">미세먼지 수치 : 실내 데이터 점검중</font></p>
         <p style="width: 170px; color:red"><font size="3">초미세먼지 수치 : 실내 데이터 점검중</font></p>
@@ -55,7 +130,7 @@
 
 
     <div class = "dataimage">
-        <img src="https://cdn4.iconfinder.com/data/icons/communication-extras/512/Sad_Face-512.png" width="350" height="350">
+        <img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%A4%EB%82%B4%2C%EC%8B%A4%EC%99%B8%20icon/%EC%8B%A4%EC%99%B8%20%EC%97%86%EC%9D%8C.png" width="350" height="350">
      
       <div class="imagetext">
         <p style="width: 170px; color:red"><font size="3">미세먼지 수치 : 실외 데이터 점검중</font></p>
@@ -63,7 +138,120 @@
       </div>
     </div>
   </div>
-
 {% endif %}
+
+</div> <!--contanier-->
+
+<!-- Page level plugins -->
+<script src="{{url_for('static', filename='vendor/chart.js/Chart.min.js')}}"></script>
+
+
+
+<script>
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+/* chart */
+    var mySize = 24;
+    var eDBpm10grade = {{ epm10grade | tojson }};
+    var eDBpm25grade = {{ epm25grade | tojson }};
+
+    eDBpm10grade.length = mySize;
+    eDBpm25grade.length = mySize;
+
+    var sum = [0,0,0,0,0];
+
+    for (var i = 0; i < mySize; i++) {
+        var grade = eDBpm10grade[i];
+        sum[grade-1]++;
+    }
+var ctx = document.getElementById("myPieChart1");
+var myPieChart1 = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["좋음", "보통", "약간 나쁨", "나쁨", "최악"],
+    datasets: [{
+      data: sum,
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#36b9cc','#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+
+
+/* map script*/
+function initMap() {
+  var initLocation = new google.maps.LatLng('36.5776', '127.7769'); //시작 위치
+
+  var lat = {{ eLat | tojson }};
+  var lng = {{ eLng | tojson }};
+
+  //map
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: initLocation,
+      zoom: 8
+    });
+
+    //mark recent (my MiniBuT)
+    markMap(map, {{myLat}}, {{myLng}});
+
+    markMap(map,lat,lng);
+    console.log(lat);
+
+    //mark externals
+    for (var i = 0; i < lat.length; i++) {
+      markMap(map, lat[i], lng[i]);
+      console.log(lat[i]);
+    }
+}
+
+
+function markMap(map, flat, flng) {
+    var markLocation = new google.maps.LatLng(flat, flng); //마커
+
+    //마커 이미지 (없어도 됨)
+    var image = new google.maps.MarkerImage( 'http://www.larva.re.kr/home/img/boximage3.png', 
+      new google.maps.Size(20, 20), '', '',
+      new google.maps.Size(20, 20));
+
+    var marker = new google.maps.Marker({
+           position: markLocation, // 마커가 위치할 위도와 경도(변수)
+           map: map,
+           icon: image,
+    });
+
+    //pop-up
+    var content = flat + "<br/>" + flng; //말풍선 내용
+    var infowindow = new google.maps.InfoWindow({ content: content});
+ 
+    google.maps.event.addListener(marker, "click", function() {
+        infowindow.open(map,marker);
+    });  
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqE1J2mApjvfQD9agllD65yiftAa3KT60&callback=initMap"></script>
+<script src="{{url_for('static', filename='js/demo/chart-bar-demo.js')}}"></script>
+
+
+
 
 {% endblock %}
