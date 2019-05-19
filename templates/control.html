@@ -3,97 +3,51 @@
 
 <br>
 <br>
-
+<br>
 
 <form role="form" action="/control" method="POST">
+<div class="okbutton">
+<input type="submit" class="btn btn-success btn-circle btn-lg" value="OK">
+</div>
+<div class = "databox">
+<div class = "databoximage" style="float: left"><!--실내 최근 미세먼지 데이터 값-->
+	<img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%ED%9D%AC%EB%A7%9D%EC%88%98%EC%B9%98.png" width="300" height="400">
 
-	<div class="databox">
-		<div class="okbutton">
-			<input type="submit" class="btn btn-success btn-circle btn-lg" value="Save">
-		</div>
-		
-		<div class="databoximage"><!--실내 최근 미세먼지 데이터 값-->
-			<img class="imgitem" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%ED%9D%AC%EB%A7%9D%EC%88%98%EC%B9%982.png" onmouseover="this.src='https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%ED%9D%AC%EB%A7%9D%EC%88%98%EC%B9%98.png'" onmouseout="this.src='https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%ED%9D%AC%EB%A7%9D%EC%88%98%EC%B9%982.png'" width="300" height="400">
+	<div class="databoxaction">
+		<div class="input-group">
+      	<input type="text" class="form-control bg-light border-0 small" style="width:90px" name="userValue" placeholder="희망미세먼지수치">
+      	
+      	{{userValue}}
+      	</div>
+    </div>
+</div>
+<div class="databoximage">
+	<img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%B6%94%EA%B0%80%EA%B8%B0%EB%8A%A5.png" width="300" height="400">
+	<br>
+	<div class="databoxaction" style="text-align: center">
+	  <!--<form role="form" action="/addcontrol" method="POST">-->
+      	<label class="switch">
+  		<input type="checkbox" name="optset">
+  		<span class="slider round"></span>
+		</label>
+		<p class="pstyle">OFF</p>
+		<p class="pstyle" style="display:none;">ON</p>
+		{{optSet}}
 
-			<div class="databoxaction"style="top:63%;">
-				<div class="inputslide">
-		      		<div class="value">{{userValue}}</div>
-					<input type="range" name="userValue" min="1" max="15" step="1" value='{{userValue}}'>
-		      	</div>
-		    </div>
-		</div>
+    </div>
+</div>
+<div class="databoximage">
+	<img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%83%81%ED%83%9C%EA%B3%A0%EC%A0%95.png" width="300" height="400">
+</div>
 
-		<div class="databoximage">
-			<img class="imgitem" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%B6%94%EA%B0%80%EA%B8%B0%EB%8A%A52.png" onmouseover="this.src='https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%B6%94%EA%B0%80%EA%B8%B0%EB%8A%A5.png'" onmouseout="this.src='https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%B6%94%EA%B0%80%EA%B8%B0%EB%8A%A52.png'"width="300" height="400">
-
-			<div class="databoxaction" style="text-align: center">
-			  <!--<form role="form" action="/addcontrol" method="POST">-->
-		      	<label class="switch">
-		      	{% if optSet == "true" %}
-		  		<input type="checkbox" name="optset" checked="checked">
-		  		<span class="slider round"></span>
-				</label>
-		      	{% else %}
-		  		<input type="checkbox" name="optset">
-		  		<span class="slider round"></span>
-				</label>
-		  		{% endif %}
-				{% if optSet == "true" %}ON
-				{% else %}OFF
-				{% endif %}
-		    </div>
-		</div>
-
-		<div class="databoximage">
-			<img class="imgitem" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%83%81%ED%83%9C%EA%B3%A0%EC%A0%952.png" onmouseover="this.src='https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%83%81%ED%83%9C%EA%B3%A0%EC%A0%95.png'" onmouseout="this.src='https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A0%9C%EC%96%B4%ED%8E%98%EC%9D%B4%EC%A7%80%20%EC%83%81%ED%83%9C%EA%B3%A0%EC%A0%952.png'" width="300" height="400">
-			<!-- * Fix Window * -->
-			<div class="databoxaction" style="top:69%;text-align: center">
-			  <!--<form role="form" action="/addcontrol" method="POST">-->
-		      	<label class="switch">
-		      	{% if fixWin == "true" %}
-		  		<input type="checkbox" name="fixwin" checked="checked">
-		  		<span class="slider round"></span>
-				</label>
-		      	{% else %}
-		  		<input type="checkbox" name="fixwin">
-		  		<span class="slider round"></span>
-				</label>
-		  		{% endif %}
-				{% if fixWin == "true" %}ON
-				{% else %}OFF
-				{% endif %}
-		    </div>
-			<!-- * Fix Match * -->
-			<div class="databoxaction" style="top:80%;text-align: center">
-			  <!--<form role="form" action="/addcontrol" method="POST">-->
-		      	<label class="switch">
-		      	{% if fixMatch == "true" %}
-		  		<input type="checkbox" name="fixmatch" checked="checked">
-		  		<span class="slider round"></span>
-				</label>
-		      	{% else %}
-		  		<input type="checkbox" name="fixmatch">
-		  		<span class="slider round"></span>
-				</label>
-		  		{% endif %}
-				{% if fixMatch == "true" %}ON
-				{% else %}OFF
-				{% endif %}
-		    </div>
-		</div>
-	</div>
-
+</div>
 </form>
 
 <script>
-	var elem = document.querySelector('input[type="range"]');
-
-	var rangeValue = function(){
-  	var newValue = elem.value;
-  	var target = document.querySelector('.value');
-  		target.innerHTML = newValue;
-	}
-
-elem.addEventListener("input", rangeValue);
+	var check = $("input[type='checkbox']");
+	check.click(function(){
+  	$("p").toggle();
+  	});
 </script>
+
 {% endblock %}

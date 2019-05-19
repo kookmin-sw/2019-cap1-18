@@ -17,25 +17,24 @@
      {% endif %}
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
     <!-- Bootstrap core JavaScript-->
   <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/control.css')}}">
 
 
 <style>
   .imagebox{
-  height:430px;
-  margin: 10px;
+  width:745px;
+  margin: 10px auto;
   position: relative;
 }
   .databox{
-  text-align: center;
+  width:980px;
+  margin: 20px auto;
   position: relative;
 }
 
 .dataimage{
-  width: 310px;
+  width: 350px;
   margin: 10px;
   vertical-align: middle;
   display: inline-block;
@@ -48,24 +47,21 @@
 }
 
 .imagetext{
-  margin: 5px;
+  margin: 90px;
   text-align: center;
   position: absolute;
-  top: 67%;
+  top: 60%;
+  width : 150px;
 }
 
 .databoxaction{
   margin:30px;
   position: absolute;
-  top:  74%;
+  top:  72%;
   width: 250px;
+
 }
 
-.inputslide{
-  top: 60%;
-  width:250px;
-  height: 70px;
-}
 
 
 .chart {
@@ -147,13 +143,6 @@ input:checked + .slider:before {
   height: 60px;
   margin: 50px;
 }
-
-.imgitem{
-  border:#FFF 4px solid;
-}
-.imgitem:hover{
-  border:#CCCCFF 4px solid;
-}
  </style>
 
 
@@ -175,7 +164,7 @@ input:checked + .slider:before {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -234,9 +223,9 @@ input:checked + .slider:before {
       {% else %}
       <li class="nav-item">
       {% endif %}
-        <a class="nav-link" href="/simul">
+        <a class="nav-link" href="/join">
           <i class="fas fa-fw fa-table"></i>
-          <span>Simul</span></a>
+          <span>Tables1</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
