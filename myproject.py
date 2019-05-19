@@ -156,8 +156,19 @@ def control():
 
 @app.route('/simul')
 def simul():
-	return render_template('simul.html', menu=4)
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	collection = db.control
+	rcollection = db.recent
+	simulinfo = collection.find_one({"idnum":session["idnum"]})
+	recent = rcollection.find_one({"idnum":session["idnum"]})
+	client.close()
+	return render_template('simul.html', menu=4, userwindow=simulinfo['window'], usermachine=simulinfo['machine'], simulrecent=recent['ipm10grade'])
 
+
+@app.route('/admin')
+def admin():
+	return render_template('admin.html', menu=5)
 
 @app.route('/map')
 def map():
