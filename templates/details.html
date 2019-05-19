@@ -1,389 +1,157 @@
+
 {% extends 'layout.html' %}
  
 {% block content %}
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
-  <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Charts</h1>
-  <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
 
-  <!-- Content Row -->
-  <div class="row">
 
-    <div class="col-xl-8 col-lg-7">
-
-      <!-- Area Chart -->
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">실외 미세먼지</h6>
-        </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <canvas id="myChart1"></canvas>
-          </div>
-          <hr>
-          <button id="toggleSize" class="btn btn-info btn-icon-split">
-            <span class="icon text-white-50">
-              <i class="fas fa-info-circle"></i>
-            </span>
-            <span class="text">자세히</span>
-          </button>
-          Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-        </div>
-      </div>
-
-            <!-- Area Chart -->
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">실내 미세먼지</h6>
-        </div>
-        <div class="card-body">
-          <div class="chart-area">
-            <canvas id="myChart2"></canvas>
-          </div>
-          <hr>
-          <button id="toggleSize" class="btn btn-info btn-icon-split">
-            <span class="icon text-white-50">
-              <i class="fas fa-info-circle"></i>
-            </span>
-            <span class="text">자세히</span>
-          </button>
-          Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-        </div>
-      </div>
-
-      <!-- Bar Chart -->
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-        </div>
-        <div class="card-body">
-          <div class="chart-bar">
-            <canvas id="myBarChart"></canvas>
-          </div>
-          <hr>
-          Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Donut Chart -->
-    <div class="col-xl-4 col-lg-5">
-      <div class="card shadow mb-4">
-        <!-- Card Header - Dropdown -->
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">실외 통계</h6>
-        </div>
-        <!-- Card Body -->
-        <div class="card-body">
-          <div class="chart-pie pt-4">
-            <canvas id="myPieChart1"></canvas>
-          </div>
-          <hr>
-          Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="imagebox">
+  <div class = "chart">
+    <button clsas="btn" id="toggleScale">Toggle Scale</button>
+    <button clsas="btn" id="toggleSize">Toggle Size</button>
+  <canvas id="myChart1"></canvas></div>
+  <div class = "chart">
+  <canvas id="myChart2"></canvas></div>
 </div>
 
-<!-- Page level plugins -->
-<script src="{{url_for('static', filename='vendor/chart.js/Chart.min.js')}}"></script>
 
-<!-- Page level custom scripts -->
+
 <script>
-Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
-
-    //var myScale = 200;
+    var myScale = 100;
     var mySize = 7;
 
-    var eDBpm10 = {{ epm10 | tojson }};
-    var eDBpm25 = {{ epm25 | tojson }};
-    var eDBdate = {{ edate | tojson }};
+    var eDBpm10 = {{ epm10 | tojson }}.reverse();
+    var eDBpm25 = {{ epm25 | tojson }}.reverse();
+    var eDBdate = {{ edate | tojson }}.reverse();
 
     eDBpm10.length = mySize;
     eDBpm25.length = mySize;
     eDBdate.length = mySize;
 
-    eDBpm10 = eDBpm10.reverse();
-    eDBpm25 = eDBpm25.reverse();
-    eDBdate = eDBdate.reverse();
+    var ctx = document.getElementById('myChart1').getContext('2d');
+    var data = {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
 
-    for (var i = 0; i < mySize; i++)
-        eDBdate[i] = eDBdate[i].substr(10,12);
-
-
-// Area Chart
-var ctx = document.getElementById("myChart1");
-var chart1 = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: eDBdate,
-    datasets: [{
-      label: "실외 미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm10,
-    }, {
-      label: "실외 초미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(255, 115, 223, 1)",
-      pointBorderColor: "rgba(255, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm25,
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          padding: 10,
-
-          beginAtZero:true,
-          //max: myScale, //y axis
-          stepSize: 20
+            labels: eDBdate,
+            datasets: [{
+                label: "실외 PM10",
+                backgroundColor: 'rgb(255, 99, 132)', //점 색깔
+                borderColor: 'rgb(255, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: eDBpm10,
+            }, {
+                label: "실외 PM2.5",
+                backgroundColor: 'rgb(0, 99, 132)', //점 색깔
+                borderColor: 'rgb(0, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: eDBpm25,
+            }]
         },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
+
+        options: {
+            scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    max: myScale, //y axis
+                    min: 0,
+                    stepSize: 20
+                    }
+                }]
+            }
         }
-      }],
-    },
-    legend: {
-      display: false
-    },
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      titleMarginBottom: 10,
-      titleFontColor: '#6e707e',
-      titleFontSize: 14,
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      intersect: false,
-      mode: 'index',
-      caretPadding: 10,
     }
-  }
-});
+    var chart = new Chart(ctx, data);
 
 
+    var iDBpm10 = ['{{iData[0].pm10}}', '{{iData[1].pm10}}'];
+    var iDBpm25 = ['{{iData[0].pm25}}', '{{iData[1].pm25}}'];
+    var iDBdate = ['{{iData[0].date}}', '{{iData[1].date}}'];
 
-// Area Chart
-var ctx = document.getElementById("myChart2");
-var chart2 = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: eDBdate,
-    datasets: [{
-      label: "실외 미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm10,
-    }, {
-      label: "실외 초미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(255, 115, 223, 1)",
-      pointBorderColor: "rgba(255, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm25,
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          padding: 10,
-
-          beginAtZero:true,
-          //max: myScale, //y axis
-          stepSize: 20
+    var ctx2 = document.getElementById('myChart2').getContext('2d');
+    var data2 = {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: ["-30분", "-25분", "-20분", "-15분", "-10분", iDBdate[1], iDBdate[0]],
+            datasets: [{
+                label: "실내 PM10",
+                backgroundColor: 'rgb(255, 99, 132)', //점 색깔
+                borderColor: 'rgb(255, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: [0,0,0,0,0,iDBpm10[1],iDBpm10[0]],
+            }, {
+                label: "실내 PM2.5",
+                backgroundColor: 'rgb(0, 99, 132)', //점 색깔
+                borderColor: 'rgb(0, 99, 132)', //선 색깔
+                fill:false,
+                //lineTension:0.2, // 값을 높이면, line의 장력이 커짐.
+                data: [0,0,0,0,0,iDBpm25[1],iDBpm25[0]],
+            }]
         },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
+
+        options: {
+            scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    max: 200,
+                    min: 0,
+                    stepSize: 20
+                    }
+                }]
+            }
         }
-      }],
-    },
-    legend: {
-      display: false
-    },
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      titleMarginBottom: 10,
-      titleFontColor: '#6e707e',
-      titleFontSize: 14,
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      intersect: false,
-      mode: 'index',
-      caretPadding: 10,
     }
-  }
-});
+    var chart2 = new Chart(ctx2, data2);
 
 
 
-    var eDBpm10grade = {{ epm10grade | tojson }};
-    var eDBpm25grade = {{ epm25grade | tojson }};
+    document.getElementById('toggleScale').addEventListener('click', function() {
+        myScale = myScale === 100 ? 200 : 100;
 
-    eDBpm10grade.length = mySize;
-    eDBpm25grade.length = mySize;
+        chart.options.scales.yAxes[0].ticks = {
+            beginAtZero: true,
+            max: myScale,
+            min: 0,
+            stepSize: 20
+        };
 
-    var sum = [0,0,0,0,0];
+        chart.update();
+    });
 
-    for (var i = 0; i < mySize; i++) {
-        var grade = eDBpm10grade[i];
-        sum[grade-1]++;
-    }
+    document.getElementById('toggleSize').addEventListener('click', function() {
+        mySize = mySize === 7 ? 20 : 7;
 
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart1");
-var myPieChart1 = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["좋음", "보통", "약간 나쁨", "나쁨", "최악"],
-    datasets: [{
-      data: sum,
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#36b9cc','#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false
-    },
-    cutoutPercentage: 80,
-  },
-});
+        eDBpm10.length = mySize;
+        eDBpm25.length = mySize;
+        eDBdate.length = mySize;
 
+        eDBpm10 = {{ epm10 | tojson }}.reverse();
+        eDBpm25 = {{ epm25 | tojson }}.reverse();
+        eDBdate = {{ edate | tojson }}.reverse();
 
+        eDBpm10.length = mySize;
+        eDBpm25.length = mySize;
+        eDBdate.length = mySize;
 
+        chart.data.labels=eDBdate;
+        chart.data.datasets[0].data=eDBpm10;
+        chart.data.datasets[1].data=eDBpm25;
 
-
-document.getElementById('toggleSize').addEventListener('click', function() {
-    mySize = mySize === 7 ? 24 : 7;
-    //Chart1 (eDust)
-    var eDBpm10 = {{ epm10 | tojson }};
-    var eDBpm25 = {{ epm25 | tojson }};
-    var eDBdate = {{ edate | tojson }};
-
-    eDBpm10.length = mySize;
-    eDBpm25.length = mySize;
-    eDBdate.length = mySize;
-
-    eDBpm10 = eDBpm10.reverse();
-    eDBpm25 = eDBpm25.reverse();
-    eDBdate = eDBdate.reverse();
-
-    chart1.data.labels=eDBdate;
-    chart1.data.datasets[0].data=eDBpm10;
-    chart1.data.datasets[1].data=eDBpm25;
-
-    for (var i = 0; i < mySize; i++)
-        eDBdate[i] = eDBdate[i].substr(10,12);
-
-    chart1.update();
-
-    //Chart3 (donut)
-    var eDBpm10grade = {{ epm10grade | tojson }};
-    var eDBpm25grade = {{ epm25grade | tojson }};
-
-    eDBpm10grade.length = mySize;
-    eDBpm25grade.length = mySize;
-
-    var sum = [0,0,0,0,0];
-
-    for (var i = 0; i < mySize; i++) {
-        var grade = eDBpm10grade[i];
-        sum[grade-1]++;
-    }
-
-    myPieChart1.data.datasets[0].data=sum;
-
-    myPieChart1.update();
-});
-
+        chart.update();
+    });
 
 </script>
-
-
-<script src="{{url_for('static', filename='js/demo/chart-bar-demo.js')}}"></script>
 
 
 {% endblock %}
