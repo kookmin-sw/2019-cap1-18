@@ -1,6 +1,127 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="service">
-<table cellpadding=0 cellspacing=0 width=199 style="border:solid 1px #1294ca;font-family:Arial;font-size:12px;background-color:#669dc7"><tr><td><table width=100% cellpadding=0 cellspacing=0><tr><td width=8 height=30 background="https://rp5.ru/informer/htmlinfa/topshl.png"  bgcolor=#1294ca> </td><td width=* align=center background="https://rp5.ru/informer/htmlinfa/topsh.png" bgcolor=#1294ca><a style="color:#ffffff; font-family:Arial;font-size: 12px;" href="https://rp5.ru/12514/ko"><b>서울특별시</b></a></td><td width=8 height=30 background="https://rp5.ru/informer/htmlinfa/topshr.png" bgcolor=#1294ca> </td></tr></table></td></tr><tr><td valign=top style="padding:0;"><iframe src="https://rp5.ru/htmla.php?id=12514&lang=ko&um=00000&bg=%23669dc7&ft=%23ffffff&fc=%231294ca&c=%23000000&f=Arial&s=12&sc=4" width=100% height=267 frameborder=0 scrolling=no style="margin:0;"></iframe></td></tr></table>
-</div>
+
+{{userwindow}}
+{{usermachine}}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+	<!-- Page Heading -->
+	<h1 class="h3 mb-2 text-gray-800">Simulation</h1>
+	<!--<p class="mb-4">시연페이지 입니다</p>-->
+
+	<div class="row">
+
+		<div class="col-xl-8 col-lg-7">
+			<!-- 집 구조도 -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">시연</h6>
+				</div>
+				<div class="card-body" style="text-align:center;">
+					<div class="simul">
+						{% if userwindow == false %}
+							{% if usermachine == false %}
+								<img style="width:650px; height:430px;"src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%ED%98%84%EC%9E%AC%20%EC%8B%A4%EB%82%B4%20%EC%83%81%ED%99%A900.png" ><!--공기 청정기 off 창문 off-->
+								<br>
+								<font color="black">공기 청정기</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font><font color="black"> 창문</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font>
+							{% else %}
+								<img style="width:650px; height:430px;"src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%ED%98%84%EC%9E%AC%20%EC%8B%A4%EB%82%B4%20%EC%83%81%ED%99%A910.png">
+								<br>								
+								<font color="black">공기 청정기</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font><font color="black"> 창문</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font> <!--공기 청정기 off 창문 on-->
+							{% endif %}
+
+
+						{% else %}
+							{% if usermachine == false %}
+								<img style="width:650px; height:430px;"src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%ED%98%84%EC%9E%AC%20%EC%8B%A4%EB%82%B4%20%EC%83%81%ED%99%A901.png">
+								<br>								
+								<font color="black">공기 청정기</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font><font color="black"> 창문</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font> <!--공기 청정기 off 창문 on-->
+							{% else %}
+								<img style="width:650px; height:430px;"src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%ED%98%84%EC%9E%AC%20%EC%8B%A4%EB%82%B4%20%EC%83%81%ED%99%A911.png" >
+								<br>								
+								<font color="black">공기 청정기</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font><font color="black"> 창문</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font> <!--공기 청정기 on 창문 on-->
+							{% endif %}
+						{% endif %}
+
+							
+					</div>
+
+				</div>
+			</div>
+		</div> 
+
+		<div class="col-xl-4 col-lg-5">
+			<!-- 집 구조도 -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">작동 상태</h6>
+				</div>
+				<div class="card-body" style="text-align:center;">
+					<div class="controlstatus">
+
+						{% if userwindow == false %}
+							{% if usermachine == false %}
+								<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%B0%BD%EB%AC%B8off.png">
+								<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EA%B3%B5%EA%B8%B0%EC%B2%AD%EC%A0%95%EA%B8%B0off.png">
+								<br>
+						 		<font color="black">공기 청정기</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font><font color="black"> 창문</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font> <!--공기 청정기 off 창문 off-->
+
+							{% else %}
+								<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%B0%BD%EB%AC%B8off.png">
+								<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EA%B3%B5%EA%B8%B0%EC%B2%AD%EC%A0%95%EA%B8%B0on.png">
+								<br>
+								<font color="black">공기 청정기</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font><font color="black"> 창문</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font> <!--공기 청정기 on 창문 off-->
+							{% endif %}
+
+
+						{% else %}
+							{% if usermachine == false %}
+								<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%B0%BD%EB%AC%B8on.png">
+								<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EA%B3%B5%EA%B8%B0%EC%B2%AD%EC%A0%95%EA%B8%B0off.png">
+								<br>
+								<font color="black">공기 청정기</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">OFF</font><font color="black"> 창문</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font> <!--공기 청정기 off 창문 on-->
+							{% else %}
+								<img style="width: 155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%B0%BD%EB%AC%B8on.png">
+								<img style="width: 155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EA%B3%B5%EA%B8%B0%EC%B2%AD%EC%A0%95%EA%B8%B0on.png">
+								<br>
+								<font color="black">공기 청정기</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font><font color="black"> 창문</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;">ON</font> <!--공기 청정기 on 창문 on-->
+							{% endif %}
+						{% endif %}						
+					</div>
+				</div>
+			</div>
+
+			<!-- 집 구조도 -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">현재 실내 미세먼지 상태</h6>
+				</div>
+				<div class="card-body" style="text-align:center;">
+					<div class="status">
+						{% if simulrecent == 1 %}
+							11
+						{% elif simulrecent == 2 %}
+							22
+						{% elif simulrecent == 3 %}
+							33
+						{% elif simulrecent == 4 %}
+							44
+						{% endif %}
+
+
+
+
+							<img style="width:200px; height: 200px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%ED%98%84%EC%9E%AC%20%EB%AF%B8%EC%84%B8%EB%A8%BC%EC%A7%80%20%EC%83%81%ED%83%9C.png">
+					</div>
+					<div class="chart-area" style="height:auto">
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div> <!-- row -->
+</div> <!-- container -->
+
 {% endblock %}
