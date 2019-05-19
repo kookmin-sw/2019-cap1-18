@@ -16,7 +16,6 @@ def index():
 		return homepage()
 
 
-#userid = request.form[id]
 
 @app.route('/main')
 def homepage():
@@ -168,7 +167,14 @@ def simul():
 
 @app.route('/admin')
 def admin():
-	return render_template('admin.html', menu=5)
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	collection = db.externaldust
+	results = collection.find()
+	eresults = collection.find().sort("_id",-1).limit(24)
+
+	return render_template('admin.html', menu=5, test=results)
+
 
 @app.route('/map')
 def map():
