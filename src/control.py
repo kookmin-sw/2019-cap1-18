@@ -1,20 +1,19 @@
 from pymongo import MongoClient
 import time
 
-
-### mongoDB 연동 ###
-client = MongoClient()
-client = MongoClient('127.0.0.1', 27017)
-db = client.get_database('dust')
-settingCol = db.get_collection('setting')
-controlCol = db.get_collection('control')
-recentCol = db.get_collection('recent')
-recentUserDatas = recentCol.find()
-
-
 while True:
+
+    ### mongoDB 연동 ###
+    client = MongoClient()
+    client = MongoClient('127.0.0.1', 27017)
+    db = client.get_database('dust')
+    settingCol = db.get_collection('setting')
+    controlCol = db.get_collection('control')
+    recentCol = db.get_collection('recent')
+    recentUserDatas = recentCol.find()
+
     for userData in recentUserDatas:
-        
+
         userid = userData["idnum"]
         ipm10 = userData["ipm10value"]
         ipm25 = userData["ipm25value"]
@@ -73,7 +72,7 @@ while True:
         #기본
         elif cnt != 0 :
             cnt-=1
-        elif ipm > userValue :
+        elif ipm > int(userValue) :
             if ipm > epm :
                 if fixWin :
                     if not window : machine = 1
@@ -90,7 +89,5 @@ while True:
 
 
         controlCol.replace_one({"idnum":userid}, {"idnum":userid, "window":window, "machine":machine, "cnt":cnt}, upsert=True)
-
-    print("done!!")
 
     time.sleep(60)
