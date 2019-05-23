@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+﻿from pymongo import MongoClient
 import time
 
 while True:
