@@ -106,8 +106,8 @@ def success(name):
 @app.route('/test', methods = ['GET'])
 def test():
 
-      user = request.args.get('myName')
-      return redirect(url_for('success', name = user))
+	  user = request.args.get('myName')
+	  return redirect(url_for('success', name = user))
 
 if __name__ == '__main__':
    app.run(debug = True)	
@@ -122,7 +122,7 @@ def form():
 	found = collection.find_one({"idnum":session["idnum"]})
 	client.close()
 
-	return render_template('control.html', menu=3, userValue=found['userValue'], optSet=found['optSet'], fixWin=found['fixWin'], fixMatch=found['fixMatch'])
+	return render_template('control.html', menu=3, userValue=int(found['userValue']), optSet=found['optSet'], setWin=found['setWin'], fixWin=found['fixWin'], setMatch=found['setMatch'], fixMatch=found['fixMatch'])
 
 
 @app.route('/control', methods=['POST'])
@@ -135,19 +135,31 @@ def control():
 
 	
 	if request.form.get('optset') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":'true'}})	
+		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":True}})	
 	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":'false'}})
+		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":False}})
+
+
+	if request.form.get('setwin') == 'on':
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setWin":True}})    
+	else:
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setWin":False}})
 
 	if request.form.get('fixwin') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":'true'}})	
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":True}})    
 	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":'false'}})
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":False}})
+
+	if request.form.get('setmatch') == 'on':
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setMatch":True}})	
+	else:
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setMatch":False}})
 
 	if request.form.get('fixmatch') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":'true'}})	
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":True}})  
 	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":'false'}})
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":False}})
+
 
 	client.close()
 	return form()
@@ -171,7 +183,7 @@ def admin():
 	db = client.dust
 	collection = db.externaldust
 	results = collection.find()
-	eresults = collection.find().sort("_id",-1).limit(24)
+	#eresults = collection.find().sort("_id",-1).limit(24)
 
 	return render_template('admin.html', menu=5, test=results)
 
