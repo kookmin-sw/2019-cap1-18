@@ -1,10 +1,19 @@
 {% extends 'layout.html' %}
 {% block content %}
 
+    <h1 class="h3 mb-2 text-gray-800">&nbsp;&nbsp;&nbsp;&nbsp;Control</h1>
+    <p class="mb-4">
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* 사용자가 희망 실내 미세먼지 수치를 설정할 수 있습니다.
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* 요리, 청소 등 미세먼지가 많이 발생하는 특수 상황을 위한 관리 기능을 서비스 합니다.
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* 사용자 임의로 기기 제어를 고정, 설정할 수 있도록 서비스를 제공합니다.</p>
+
 <form role="form" action="/control" method="POST">
 
     <div class="databox">
-        <div style="position:fixed;right:100px;top:100px">
+        <div style="position:fixed;right:140px;top:180px">
             <input type="submit" class="btn btn-primary btn-icon-split btn-lg" value="  SAVE  " style="width:90px; ">
         </div>
         
