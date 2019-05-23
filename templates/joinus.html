@@ -3,9 +3,20 @@
 {% block content %}
 
 
-<p> 회원가입 완료 </p>
-Name(ID) : {{ firstname }}<br>
+<br><br>
+<h1 class="h3 mb-2 text-gray-800" style="text-align: center;">
+	{{ firstname }} 님 회원이 되신것을 환영합니다!
+</h1>
+	<br><br>
 
+
+	<h1 class="h3 mb-2 text-gray-800" style="text-align: center; font-size: 15px;">Mini BuT이 {{firstname}}님의 실내 환경 개선을 도와드리겠습니다.</h1>
+	<br>
+	<h1 class="h3 mb-2 text-gray-800" style="text-align: center; font-size: 12px;">{{firstname}}님! 아래 버튼을 눌러 메인페이지 에서 다시 로그인 해주세요!</h1>			
+				<br><br><br>
+		  		<div class="locdiv" style="margin-left:570px;">	
+	  			<input type="button" class="btn btn-primary btn-icon-split btn-lg"  value="메인으로 돌아가기" onclick="location.href='/'";>
+	  			</div>
  <!--</body>
 </html>-->
 {% endblock %}
