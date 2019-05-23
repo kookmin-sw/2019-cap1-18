@@ -243,9 +243,9 @@ def action():
 	##email = request.form['email']
 	return render_template('action.html', firstname=temp1, lastname=temp2, email=temp3)
 
-#@app.route('/login')
-#def login_form():
-	#return render_template('login.html')
+@app.route('/join')
+def login_form():
+	return render_template('join.html')
 
 @app.route('/index', methods=['POST'])
 def login():
