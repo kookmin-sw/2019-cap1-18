@@ -107,8 +107,8 @@ def success(name):
 @app.route('/test', methods = ['GET'])
 def test():
 
-      user = request.args.get('myName')
-      return redirect(url_for('success', name = user))
+	  user = request.args.get('myName')
+	  return redirect(url_for('success', name = user))
 
 if __name__ == '__main__':
    app.run(debug = True)	
@@ -123,7 +123,7 @@ def form():
 	found = collection.find_one({"idnum":session["idnum"]})
 	client.close()
 
-	return render_template('control.html', menu=3, userValue=found['userValue'], optSet=found['optSet'], fixWin=found['fixWin'], fixMatch=found['fixMatch'])
+	return render_template('control.html', menu=3, userValue=int(found['userValue']), optSet=found['optSet'], setWin=found['setWin'], fixWin=found['fixWin'], setMatch=found['setMatch'], fixMatch=found['fixMatch'])
 
 
 @app.route('/control', methods=['POST'])
@@ -139,6 +139,7 @@ def control():
 		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":True}})	
 	else:
 		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":False}})
+<<<<<<< HEAD
 
 	if request.form.get('fixwin') == 'on':
 		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":True}})	
@@ -149,6 +150,30 @@ def control():
 		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":True}})	
 	else:
 		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":False}})
+=======
+
+
+	if request.form.get('setwin') == 'on':
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setWin":True}})    
+	else:
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setWin":False}})
+
+	if request.form.get('fixwin') == 'on':
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":True}})    
+	else:
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":False}})
+
+	if request.form.get('setmatch') == 'on':
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setMatch":True}})	
+	else:
+		collection.update({"idnum":session["idnum"]}, {"$set": {"setMatch":False}})
+
+	if request.form.get('fixmatch') == 'on':
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":True}})  
+	else:
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":False}})
+
+>>>>>>> 685f6ca548d1c2e9dddd5dcdcabe4ab9e0c7b9fa
 
 	client.close()
 	return form()
@@ -166,9 +191,19 @@ def simul():
 	return render_template('simul.html', menu=4, userwindow=simulinfo['window'], usermachine=simulinfo['machine'], simulrecent=recent['ipm10grade'])
 
 
+<<<<<<< HEAD
 @app.route('/admin_login')
 def admin_login():
 	return render_template('admin_login.html', menu=5)
+=======
+@app.route('/admin')
+def admin():
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	collection = db.externaldust
+	results = collection.find()
+	#eresults = collection.find().sort("_id",-1).limit(24)
+>>>>>>> 685f6ca548d1c2e9dddd5dcdcabe4ab9e0c7b9fa
 
 @app.route('/admin', methods=['POST'])
 def admin():
@@ -237,9 +272,9 @@ def action():
 	##email = request.form['email']
 	return render_template('action.html', firstname=temp1, lastname=temp2, email=temp3)
 
-#@app.route('/login')
-#def login_form():
-	#return render_template('login.html')
+@app.route('/join')
+def login_form():
+	return render_template('join.html')
 
 @app.route('/index', methods=['POST'])
 def login():
