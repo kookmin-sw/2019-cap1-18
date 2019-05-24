@@ -35,7 +35,7 @@
         </div>
       </div>
 
-            <!-- Area Chart -->
+      <!-- Area Chart -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">실내 미세먼지</h6>
@@ -45,27 +45,13 @@
             <canvas id="myChart2"></canvas>
           </div>
           <hr>
-          <button id="toggleSize" class="btn btn-info btn-icon-split">
+          <button id="toggleSize2" class="btn btn-info btn-icon-split">
             <span class="icon text-white-50">
               <i class="fas fa-info-circle"></i>
             </span>
             <span class="text">자세히</span>
           </button>
           실내 미세먼지 수치를 보여줍니다.
-        </div>
-      </div>
-
-      <!-- Bar Chart -->
-      <div class="card shadow mb-4">
-        <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-        </div>
-        <div class="card-body">
-          <div class="chart-bar">
-            <canvas id="myBarChart"></canvas>
-          </div>
-          <hr>
-          설명
         </div>
       </div>
 
@@ -99,239 +85,253 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-    //var myScale = 200;
-    var mySize = 7;
 
-    var eDBpm10 = {{ epm10 | tojson }};
-    var eDBpm25 = {{ epm25 | tojson }};
-    var eDBdate = {{ edate | tojson }};
+// external Area Chart
+  var mySize = 7;
 
-    eDBpm10.length = mySize;
-    eDBpm25.length = mySize;
-    eDBdate.length = mySize;
+  var eDBpm10 = {{ epm10 | tojson }};
+  var eDBpm25 = {{ epm25 | tojson }};
+  var eDBdate = {{ edate | tojson }};
 
-    eDBpm10 = eDBpm10.reverse();
-    eDBpm25 = eDBpm25.reverse();
-    eDBdate = eDBdate.reverse();
+  eDBpm10.length = mySize;
+  eDBpm25.length = mySize;
+  eDBdate.length = mySize;
 
-    for (var i = 0; i < mySize; i++)
-        eDBdate[i] = eDBdate[i].substr(10,12);
+  eDBpm10 = eDBpm10.reverse();
+  eDBpm25 = eDBpm25.reverse();
+  eDBdate = eDBdate.reverse();
+
+  for (var i = 0; i < mySize; i++)
+      eDBdate[i] = eDBdate[i].substr(10,12);
 
 
-// Area Chart
-var ctx = document.getElementById("myChart1");
-var chart1 = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: eDBdate,
-    datasets: [{
-      label: "실외 미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm10,
-    }, {
-      label: "실외 초미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(255, 115, 223, 1)",
-      pointBorderColor: "rgba(255, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm25,
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          padding: 10,
-
-          beginAtZero:true,
-          //max: myScale, //y axis
-          stepSize: 20
-        },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
-        }
+  var ctx = document.getElementById("myChart1");
+  var chart1 = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: eDBdate,
+      datasets: [{
+        label: "실외 미세먼지",
+        lineTension: 0,
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointBorderColor: "rgba(78, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
+        pointHoverBorderColor: "rgba(255, 50, 50, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        fill:false,
+        data: eDBpm10,
+      }, {
+        label: "실외 초미세먼지",
+        lineTension: 0,
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(255, 115, 223, 1)",
+        pointBorderColor: "rgba(255, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
+        pointHoverBorderColor: "rgba(255, 50, 50, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        fill:false,
+        data: eDBpm25,
       }],
     },
-    legend: {
-      display: false
-    },
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      titleMarginBottom: 10,
-      titleFontColor: '#6e707e',
-      titleFontSize: 14,
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      intersect: false,
-      mode: 'index',
-      caretPadding: 10,
-    }
-  }
-});
-
-
-
-// Area Chart
-var ctx = document.getElementById("myChart2");
-var chart2 = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: eDBdate,
-    datasets: [{
-      label: "실외 미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm10,
-    }, {
-      label: "실외 초미세먼지",
-      lineTension: 0,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(255, 115, 223, 1)",
-      pointBorderColor: "rgba(255, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
-      pointHoverBorderColor: "rgba(255, 50, 50, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2,
-      fill:false,
-      data: eDBpm25,
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          padding: 10,
-
-          beginAtZero:true,
-          //max: myScale, //y axis
-          stepSize: 20
-        },
-        gridLines: {
-          color: "rgb(234, 236, 244)",
-          zeroLineColor: "rgb(234, 236, 244)",
-          drawBorder: false,
-          borderDash: [2],
-          zeroLineBorderDash: [2]
+    options: {
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          left: 10,
+          right: 25,
+          top: 25,
+          bottom: 0
         }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            padding: 10,
+
+            beginAtZero:true,
+            //max: myScale, //y axis
+            stepSize: 20
+          },
+          gridLines: {
+            color: "rgb(234, 236, 244)",
+            zeroLineColor: "rgb(234, 236, 244)",
+            drawBorder: false,
+            borderDash: [2],
+            zeroLineBorderDash: [2]
+          }
+        }],
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        titleMarginBottom: 10,
+        titleFontColor: '#6e707e',
+        titleFontSize: 14,
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        intersect: false,
+        mode: 'index',
+        caretPadding: 10,
+      }
+    }
+  });
+
+
+// internal Area Chart
+  var mySize2 = 7;
+
+  var iDBpm10 = {{ ipm10 | tojson }};
+  var iDBpm25 = {{ ipm25 | tojson }};
+  var iDBdate = {{ idate | tojson }};
+
+  iDBpm10.length = mySize2;
+  iDBpm25.length = mySize2;
+  iDBdate.length = mySize2;
+
+  iDBpm10 = iDBpm10.reverse();
+  iDBpm25 = iDBpm25.reverse();
+  iDBdate = iDBdate.reverse();
+
+  for (var i = 0; i < mySize2; i++)
+      iDBdate[i] = iDBdate[i].substr(11,5);
+
+  var ctx2 = document.getElementById("myChart2");
+  var chart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: iDBdate,
+      datasets: [{
+        label: "실내 미세먼지",
+        lineTension: 0,
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointBorderColor: "rgba(78, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
+        pointHoverBorderColor: "rgba(255, 50, 50, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        fill:false,
+        data: iDBpm10,
+      }, {
+        label: "실내 초미세먼지",
+        lineTension: 0,
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(255, 115, 223, 1)",
+        pointBorderColor: "rgba(255, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
+        pointHoverBorderColor: "rgba(255, 50, 50, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        fill:false,
+        data: iDBpm25,
       }],
     },
-    legend: {
-      display: false
-    },
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      titleMarginBottom: 10,
-      titleFontColor: '#6e707e',
-      titleFontSize: 14,
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      intersect: false,
-      mode: 'index',
-      caretPadding: 10,
+    options: {
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          left: 10,
+          right: 25,
+          top: 25,
+          bottom: 0
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            padding: 10,
+
+            beginAtZero:true,
+            //max: myScale, //y axis
+            stepSize: 20
+          },
+          gridLines: {
+            color: "rgb(234, 236, 244)",
+            zeroLineColor: "rgb(234, 236, 244)",
+            drawBorder: false,
+            borderDash: [2],
+            zeroLineBorderDash: [2]
+          }
+        }],
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        titleMarginBottom: 10,
+        titleFontColor: '#6e707e',
+        titleFontSize: 14,
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        intersect: false,
+        mode: 'index',
+        caretPadding: 10,
+      }
     }
+  });
+
+
+// Pie Chart
+  var eDBpm10grade = {{ epm10grade | tojson }};
+  var eDBpm25grade = {{ epm25grade | tojson }};
+
+  eDBpm10grade.length = mySize;
+  eDBpm25grade.length = mySize;
+
+  var sum = [0,0,0,0,0];
+
+  for (var i = 0; i < mySize; i++) {
+      var grade = eDBpm10grade[i];
+      sum[grade-1]++;
   }
-});
-
-
-
-    var eDBpm10grade = {{ epm10grade | tojson }};
-    var eDBpm25grade = {{ epm25grade | tojson }};
-
-    eDBpm10grade.length = mySize;
-    eDBpm25grade.length = mySize;
-
-    var sum = [0,0,0,0,0];
-
-    for (var i = 0; i < mySize; i++) {
-        var grade = eDBpm10grade[i];
-        sum[grade-1]++;
-    }
-
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart1");
-var myPieChart1 = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["좋음", "보통", "약간 나쁨", "나쁨", "최악"],
-    datasets: [{
-      data: sum,
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#36b9cc','#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
+  var ctx = document.getElementById("myPieChart1");
+  var myPieChart1 = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ["좋음", "보통", "약간 나쁨", "나쁨", "최악"],
+      datasets: [{
+        data: sum,
+        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#36b9cc','#36b9cc'],
+        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
+        hoverBorderColor: "rgba(234, 236, 244, 1)",
+      }],
     },
-    legend: {
-      display: false
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        caretPadding: 10,
+      },
+      legend: {
+        display: false
+      },
+      cutoutPercentage: 80,
     },
-    cutoutPercentage: 80,
-  },
-});
+  });
 
 
 
@@ -352,12 +352,12 @@ document.getElementById('toggleSize').addEventListener('click', function() {
     eDBpm25 = eDBpm25.reverse();
     eDBdate = eDBdate.reverse();
 
+    for (var i = 0; i < mySize; i++)
+        eDBdate[i] = eDBdate[i].substr(10,12);
+
     chart1.data.labels=eDBdate;
     chart1.data.datasets[0].data=eDBpm10;
     chart1.data.datasets[1].data=eDBpm25;
-
-    for (var i = 0; i < mySize; i++)
-        eDBdate[i] = eDBdate[i].substr(10,12);
 
     chart1.update();
 
@@ -381,10 +381,33 @@ document.getElementById('toggleSize').addEventListener('click', function() {
 });
 
 
+document.getElementById('toggleSize2').addEventListener('click', function() {
+  console.log("a");
+  mySize2 = mySize2 === 7 ? 24 : 7;
+
+  var iDBpm10 = {{ ipm10 | tojson }};
+  var iDBpm25 = {{ ipm25 | tojson }};
+  var iDBdate = {{ idate | tojson }};
+
+  iDBpm10.length = mySize2;
+  iDBpm25.length = mySize2;
+  iDBdate.length = mySize2;
+
+  iDBpm10 = iDBpm10.reverse();
+  iDBpm25 = iDBpm25.reverse();
+  iDBdate = iDBdate.reverse();
+
+  for (var i = 0; i < mySize2; i++)
+      iDBdate[i] = iDBdate[i].substr(11,5);
+
+  chart2.data.labels=iDBdate;
+  chart2.data.datasets[0].data=iDBpm10;
+  chart2.data.datasets[1].data=iDBpm25;
+
+  chart2.update();
+});
+
 </script>
-
-
-<script src="{{url_for('static', filename='js/demo/chart-bar-demo.js')}}"></script>
 
 
 {% endblock %}
