@@ -1,4 +1,4 @@
-﻿from pymongo import MongoClient
+from pymongo import MongoClient
 import time
 
 while True:
@@ -41,6 +41,10 @@ while True:
         setMach = userSetData["setMatch"]
         optSet = userSetData["optSet"]
 
+        oldWin = userCtlData["window"]
+        oldMach = userCtlData["machine"]
+
+
         #실내 미세먼지, 실외 미세먼지 데이터 변수에 저장
 
         window  = 0
@@ -56,10 +60,10 @@ while True:
 
         #추가기능 실행
         if optSet and ipm > 150 :
-            if fixwin :
+            if fixWin :
                 if not window : machine = 1
 
-            elif fixmach :
+            elif fixMach :
                 if not machine : window = 1
                 #counter가 있으면, 여기서 창문을 일정 시간 열고 닫는 형식우로 구현하기
 
@@ -72,12 +76,15 @@ while True:
         #기본
         elif cnt != 0 :
             cnt-=1
+            if not fixWin : window = oldWin
+            if not fixMach : machine = oldMach
+
         elif ipm > int(userValue) :
             if ipm > epm :
                 if fixWin :
                     if not window : machine = 1
 
-                elif fixmach :
+                elif fixMach :
                     if not machine : window = 1
 
                 else : window = 1
