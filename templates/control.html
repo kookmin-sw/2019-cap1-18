@@ -29,7 +29,7 @@
 			<div class="databoxaction" style="text-align: center">
 			  <!--<form role="form" action="/addcontrol" method="POST">-->
 		      	<label class="switch">
-		      	{% if optSet == "true" %}
+		      	{% if optSet == true %}
 		  		<input type="checkbox" name="optset" checked="checked">
 		  		<span class="slider round"></span>
 				</label>
@@ -38,7 +38,7 @@
 		  		<span class="slider round"></span>
 				</label>
 		  		{% endif %}
-				{% if optSet == "true" %}ON
+				{% if optSet == true %}ON
 				{% else %}OFF
 				{% endif %}
 		    </div>
@@ -50,7 +50,7 @@
 			<div class="databoxaction" style="top:69%;text-align: center">
 			  <!--<form role="form" action="/addcontrol" method="POST">-->
 		      	<label class="switch">
-		      	{% if fixWin == "true" %}
+		      	{% if fixWin == true %}
 		  		<input type="checkbox" name="fixwin" checked="checked">
 		  		<span class="slider round"></span>
 				</label>
@@ -59,7 +59,7 @@
 		  		<span class="slider round"></span>
 				</label>
 		  		{% endif %}
-				{% if fixWin == "true" %}ON
+				{% if fixWin == true %}ON
 				{% else %}OFF
 				{% endif %}
 		    </div>
@@ -67,7 +67,7 @@
 			<div class="databoxaction" style="top:80%;text-align: center">
 			  <!--<form role="form" action="/addcontrol" method="POST">-->
 		      	<label class="switch">
-		      	{% if fixMatch == "true" %}
+		      	{% if fixMatch == true %}
 		  		<input type="checkbox" name="fixmatch" checked="checked">
 		  		<span class="slider round"></span>
 				</label>
@@ -76,7 +76,7 @@
 		  		<span class="slider round"></span>
 				</label>
 		  		{% endif %}
-				{% if fixMatch == "true" %}ON
+				{% if fixMatch == true %}ON
 				{% else %}OFF
 				{% endif %}
 		    </div>
