@@ -79,22 +79,31 @@ def details():
 		eresults = ecollection.find().sort("_id",-1).limit(24)
 		client.close()
 
-		pm10 = []
-		pm25 = []
-		pm10grade = []
-		pm25grade = []
-		date = []
+		epm10 = []
+		epm25 = []
+		epm10grade = []
+		epm25grade = []
+		edate = []
 
 		for doc in eresults:
 			li = list(doc.values())
-			pm10.append(li[4])
-			pm25.append(li[6])
-			pm10grade.append(li[5])
-			pm25grade.append(li[7])
-			date.append(li[8])
+			epm10.append(li[4])
+			epm25.append(li[6])
+			epm10grade.append(li[5])
+			epm25grade.append(li[7])
+			edate.append(li[8])
 
+		ipm10 = []
+		ipm25 = []
+		idate = []
 
-		return render_template('details.html', title='Details', menu=2, epm10=pm10, epm25=pm25, epm10grade=pm10grade, epm25grade=pm25grade, edate=date, iData=iresults)
+		for doc in iresults:
+			li = list(doc.values())
+			ipm10.append(li[4])
+			ipm25.append(li[6])
+			idate.append(li[8])
+
+		return render_template('details.html', title='Details', menu=2, epm10=epm10, epm25=epm25, epm10grade=epm10grade, epm25grade=epm25grade, edate=edate, ipm10=ipm10, ipm25=ipm25, idate=idate)
 	else:
 		return index()
 
@@ -123,7 +132,7 @@ def form():
 	found = collection.find_one({"idnum":session["idnum"]})
 	client.close()
 
-	return render_template('control.html', menu=3, userValue=int(found['userValue']), optSet=found['optSet'], setWin=found['setWin'], fixWin=found['fixWin'], setMatch=found['setMatch'], fixMatch=found['fixMatch'])
+	return render_template('control.html', menu=3, userValue=found['userValue'], optSet=found['optSet'], fixWin=found['fixWin'], fixMatch=found['fixMatch'])
 
 
 @app.route('/control', methods=['POST'])
@@ -139,7 +148,6 @@ def control():
 		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":True}})	
 	else:
 		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":False}})
-<<<<<<< HEAD
 
 	if request.form.get('fixwin') == 'on':
 		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":True}})	
@@ -150,30 +158,6 @@ def control():
 		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":True}})	
 	else:
 		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":False}})
-=======
-
-
-	if request.form.get('setwin') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"setWin":True}})    
-	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"setWin":False}})
-
-	if request.form.get('fixwin') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":True}})    
-	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":False}})
-
-	if request.form.get('setmatch') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"setMatch":True}})	
-	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"setMatch":False}})
-
-	if request.form.get('fixmatch') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":True}})  
-	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":False}})
-
->>>>>>> 685f6ca548d1c2e9dddd5dcdcabe4ab9e0c7b9fa
 
 	client.close()
 	return form()
@@ -191,29 +175,42 @@ def simul():
 	return render_template('simul.html', menu=4, userwindow=simulinfo['window'], usermachine=simulinfo['machine'], simulrecent=recent['ipm10grade'])
 
 
-<<<<<<< HEAD
 @app.route('/admin_login')
 def admin_login():
 	return render_template('admin_login.html', menu=5)
-=======
-@app.route('/admin')
-def admin():
-	client = pymongo.MongoClient('mongodb://localhost:27017')
-	db = client.dust
-	collection = db.externaldust
-	results = collection.find()
-	#eresults = collection.find().sort("_id",-1).limit(24)
->>>>>>> 685f6ca548d1c2e9dddd5dcdcabe4ab9e0c7b9fa
 
 @app.route('/admin', methods=['POST'])
 def admin():
 	if request.form['id'] == 'admin' and request.form['password'] == '123':
 		client = pymongo.MongoClient('mongodb://localhost:27017')
 		db = client.dust
-		collection = db.externaldust
-		results = collection.find({"edate":{"$exists":True}})
+		ecollection = db.externaldust
+		icollection = db.internaldust
+		results = ecollection.find({"edate": {"$exists":True}})
 
-		return render_template('admin.html', menu=5, eData=results)
+		api = ecollection.aggregate([
+			{"$group": {"_id": "$location", "elat": {"$last": "$elat"}, "elng": {"$last": "$elng"}, "pm10":{"$last": "$epm10value"}, "pm25":{"$last": "$epm25value"}, "date":{"$last": "$edate"}}}
+			])
+
+		elat = []
+		elng = []
+		for doc in api:
+			li = list(doc.values())
+			elat.append(li[1])
+			elng.append(li[2])
+
+		user = icollection.aggregate([
+			{"$group": {"_id": "$idnum", "ilat": {"$last": "$ilat"}, "ilng": {"$last": "$ilng"}, "pm10":{"$last": "$ipm10value"}, "pm25":{"$last": "$ipm25value"}, "date":{"$last": "$idate"}}}
+			])
+
+		ilat = []
+		ilng = []
+		for doc in user:
+			li = list(doc.values())
+			ilat.append(li[1])
+			ilng.append(li[2])
+
+		return render_template('admin.html', menu=5, eData=results, eLat=elat, eLng=elng, iLat=ilat, iLng=ilng)
 	else:
 		return admin_login()
 
@@ -242,8 +239,6 @@ def map():
 	return render_template('test_map.html', myLat=recent['ilat'], myLng=recent['ilng'], eLat=pos[0], eLng=pos[1])
 
 	#return render_template('test_map.html', myLat=recent['ilat'], myLng=recent['ilng'], ttest=eresults)
-
-
 
 @app.route('/joinus', methods=['POST'])
 def joinus():
