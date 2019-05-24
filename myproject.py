@@ -93,7 +93,8 @@ def details():
 			pm25grade.append(li[7])
 			date.append(li[8])
 
-		return render_template('details.html', epm10=pm10, epm25=pm25, epm10grade=pm10grade, epm25grade=pm25grade, edate=date, iData=iresults, title='Details', menu=2)
+
+		return render_template('details.html', title='Details', menu=2, epm10=pm10, epm25=pm25, epm10grade=pm10grade, epm25grade=pm25grade, edate=date, iData=iresults)
 	else:
 		return index()
 
@@ -135,19 +136,19 @@ def control():
 
 	
 	if request.form.get('optset') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":'true'}})	
+		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":True}})	
 	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":'false'}})
+		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":False}})
 
 	if request.form.get('fixwin') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":'true'}})	
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":True}})	
 	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":'false'}})
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixWin":False}})
 
 	if request.form.get('fixmatch') == 'on':
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":'true'}})	
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":True}})	
 	else:
-		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":'false'}})
+		collection.update({"idnum":session["idnum"]}, {"$set": {"fixMatch":False}})
 
 	client.close()
 	return form()
@@ -165,16 +166,21 @@ def simul():
 	return render_template('simul.html', menu=4, userwindow=simulinfo['window'], usermachine=simulinfo['machine'], simulrecent=recent['ipm10grade'])
 
 
-@app.route('/admin')
+@app.route('/admin_login')
+def admin_login():
+	return render_template('admin_login.html', menu=5)
+
+@app.route('/admin', methods=['POST'])
 def admin():
-	client = pymongo.MongoClient('mongodb://localhost:27017')
-	db = client.dust
-	collection = db.externaldust
-	results = collection.find()
-	eresults = collection.find().sort("_id",-1).limit(24)
+	if request.form['id'] == 'admin' and request.form['password'] == '123':
+		client = pymongo.MongoClient('mongodb://localhost:27017')
+		db = client.dust
+		collection = db.externaldust
+		results = collection.find({"edate":{"$exists":True}})
 
-	return render_template('admin.html', menu=5, test=results)
-
+		return render_template('admin.html', menu=5, eData=results)
+	else:
+		return admin_login()
 
 @app.route('/map')
 def map():
