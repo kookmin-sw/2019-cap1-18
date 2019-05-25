@@ -3,217 +3,221 @@ import RPi.GPIO as GPIO
 
 redPin, greenPin, bluePin = 11, 13, 15
 
-def blink(pin):
-	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(pin, GPIO.OUT)
-	GPIO.output(pin, GPIO.HIGH)
-	
-def turnOff(pin):
-	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(pin, GPIO.OUT)
-	GPIO.output(pin, GPIO.LOW)
+class led:
+    def blink(self, pin):
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.HIGH)
 
-def redOn():
-	blink(redPin)
+    def turnOff(self, pin):
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.LOW)
 
-def greenOn():
-	blink(greenPin)
+    def redOn(self):
+        self.blink(redPin)
 
-def blueOn():
-	blink(bluePin)
+    def greenOn(self):
+        self.blink(greenPin)
 
-def yellowOn():
-	blink(redPin)
-	blink(greenPin)
+    def blueOn(self):
+        self.blink(bluePin)
 
-def cyanOn():
-	blink(greenPin)
-	blink(bluePin)
+    def yellowOn(self):
+        self.blink(redPin)
+        self.blink(greenPin)
 
-def magentaOn():
-	blink(redPin)
-	blink(bluePin)
+    def cyanOn(self):
+        self.blink(greenPin)
+        self.blink(bluePin)
 
-def whiteOn():
-	blink(redPin)
-	blink(greenPin)
-	blink(bluePin)
+    def magentaOn(self):
+        self.blink(redPin)
+        self.blink(bluePin)
 
-def redOff():
-	turnOff(redPin)
+    def whiteOn(self):
+        self.blink(redPin)
+        self.blink(greenPin)
+        self.blink(bluePin)
 
-def greenOff():
-	turnOff(greenPin)
+    def redOff(self):
+        self.turnOff(redPin)
 
-def blueOff():
-	turnOff(bluePin)
+    def greenOff(self):
+        self.turnOff(greenPin)
 
-def yellowOff():
-	turnOff(redPin)
-	turnOff(greenPin)
+    def blueOff(self):
+        self.turnOff(bluePin)
 
-def cyanOff():
-	turnOff(greenPin)
-	turnOff(bluePin)
+    def yellowOff(self):
+        self.turnOff(redPin)
+        self.turnOff(greenPin)
 
-def magentaOff():
-	turnOff(redPin)
-	turnOff(bluePin)
+    def cyanOff(self):
+        self.turnOff(greenPin)
+        self.turnOff(bluePin)
 
-def whiteOff():
-	turnOff(redPin)
-	turnOff(greenPin)
-	turnOff(bluePin)
+    def magentaOff(self):
+        self.turnOff(redPin)
+        self.turnOff(bluePin)
+
+    def whiteOff(self):
+        self.turnOff(redPin)
+        self.turnOff(greenPin)
+        self.turnOff(bluePin)
+
+    def redBlink(self, sec):
+        startTime = time.time()
+        while time.time() - startTime - sec < 0:
+            self.blink(redPin)
+            time.sleep(0.5)
+            self.turnOff(redPin)
+            time.sleep(0.5)
+        self.turnOff(redPin)
+
+    def greenBlink(self, sec):
+        startTime = time.time()
+        while time.time() - startTime - sec < 0:
+            self.blink(greenPin)
+            time.sleep(0.5)
+            self.turnOff(greenPin)
+            time.sleep(0.5)
+        self.turnOff(greenPin)
+
+    def blueBlink(self, sec):
+        startTime = time.time()
+        while time.time() - startTime - sec < 0:
+            self.blink(bluePin)
+            time.sleep(0.5)
+            self.turnOff(bluePin)
+            time.sleep(0.5)
+        self.turnOff(bluePin)
+
+    def yellowBlink(self, sec):
+        startTime = time.time()
+        while time.time() - startTime - sec < 0:
+            self.blink(redPin)
+            self.blink(greenPin)
+            time.sleep(0.5)
+            self.turnOff(redPin)
+            self.turnOff(greenPin)
+            time.sleep(0.5)
+        self.turnOff(redPin)
+        self.turnOff(greenPin)
+
+    def cyanBlink(self, sec):
+        startTime = time.time()
+        while time.time() - startTime - sec < 0:
+            self.blink(greenPin)
+            self.blink(bluePin)
+            time.sleep(0.5)
+            self.turnOff(greenPin)
+            self.turnOff(bluePin)
+            time.sleep(0.5)
+        self.turnOff(greenPin)
+        self.turnOff(bluePin)
+
+    def magentaBlink(self, sec):
+        startTime = time.time()
+        while time.time() - startTime - sec < 0:
+            self.blink(redPin)
+            self.blink(bluePin)
+            time.sleep(0.5)
+            self.turnOff(redPin)
+            self.turnOff(bluePin)
+            time.sleep(0.5)
+        self.turnOff(redPin)
+        self.turnOff(bluePin)
 
 
-def redBlink(sec):
-	startTime = time.time()
-	while time.time() - startTime - sec < 0:
-		blink(redPin)
-		time.sleep(0.5)
-		turnOff(redPin)
-		time.sleep(0.5)	
-	turnOff(redPin)
+    def whiteBlink(self, sec):
+        startTime = time.time()
+        while time.time() - startTime - sec < 0:
+            self.blink(redPin)
+            self.blink(greenPin)
+            self.blink(bluePin)
+            time.sleep(0.5)
+            self.turnOff(redPin)
+            self.turnOff(greenPin)
+            self.turnOff(bluePin)
+            time.sleep(0.5)
+        self.turnOff(redPin)
+        self.turnOff(greenPin)
+        self.turnOff(bluePin)
 
-def greenBlink(sec):
-	startTime = time.time()
-	while time.time() - startTime - sec < 0:
-		blink(greenPin)
-		time.sleep(0.5)
-		turnOff(greenPin)
-		time.sleep(0.5)	
-	turnOff(greenPin)
-
-def blueBlink(sec):
-	startTime = time.time()
-	while time.time() - startTime - sec < 0:
-		blink(bluePin)
-		time.sleep(0.5)
-		turnOff(bluePin)
-		time.sleep(0.5)	
-	turnOff(bluePin)
-
-def yellowBlink(sec):
-	startTime = time.time()
-	while time.time() - startTime - sec < 0:
-		blink(redPin)
-		blink(greenPin)
-		time.sleep(0.5)
-		turnOff(redPin)
-		turnOff(greenPin)
-		time.sleep(0.5)	
-	turnOff(redPin)
-	turnOff(greenPin)
-
-def cyanBlink(sec):
-	startTime = time.time()
-	while time.time() - startTime - sec < 0:
-		blink(greenPin)
-		blink(bluePin)
-		time.sleep(0.5)
-		turnOff(greenPin)
-		turnOff(bluePin)
-		time.sleep(0.5)	
-	turnOff(greenPin)
-	turnOff(bluePin)
-
-def magentaBlink(sec):
-	startTime = time.time()
-	while time.time() - startTime - sec < 0:
-		blink(redPin)
-		blink(bluePin)
-		time.sleep(0.5)
-		turnOff(redPin)
-		turnOff(bluePin)
-		time.sleep(0.5)	
-	turnOff(redPin)
-	turnOff(bluePin)
-def whiteBlink(sec):
-	startTime = time.time()
-	while time.time() - startTime - sec < 0:
-		blink(redPin)
-		blink(greenPin)
-		blink(bluePin)
-		time.sleep(0.5)
-		turnOff(redPin)
-		turnOff(greenPin)
-		turnOff(bluePin)
-		time.sleep(0.5)	
-	turnOff(redPin)
-	turnOff(greenPin)
-	turnOff(bluePin)
+'''
 if __name__ == "__main__":
-	while True:
-		cmd = raw_input("Choose an option: ")
+    while True:
+        cmd = raw_input("Choose an option: ")
 
-		if cmd == "red on":
-			redOn()
+        if cmd == "red on":
+            redOn()
 
-		elif cmd == "red off":
-			redOff()
+        elif cmd == "red off":
+            redOff()
 
-		elif cmd == "green on":
-			greenOn()
+        elif cmd == "green on":
+            greenOn()
 
-		elif cmd == "green off":
-			greenOff()
+        elif cmd == "green off":
+            greenOff()
 
-		elif cmd == "blue on":
-			blueOn()
-		
-		elif cmd == "blue off":
-			blueOff()
+        elif cmd == "blue on":
+            blueOn()
 
-		elif cmd == "yellow on":
-			yellowOn()
+        elif cmd == "blue off":
+            blueOff()
 
-		elif cmd == "yellow off":
-			yellowOff()
+        elif cmd == "yellow on":
+            yellowOn()
 
-		elif cmd == "cyan on":
-			cyanOn()
+        elif cmd == "yellow off":
+            yellowOff()
 
-		elif cmd == "cyan off":
-			cyanOff()
+        elif cmd == "cyan on":
+            cyanOn()
 
-		elif cmd == "magenta on":
-			magentaOn()
+        elif cmd == "cyan off":
+            cyanOff()
 
-		elif cmd == "magenta off":
-			magentaOff()
+        elif cmd == "magenta on":
+            magentaOn()
 
-		elif cmd == "white on":
-			whiteOn()
+        elif cmd == "magenta off":
+            magentaOff()
 
-		elif cmd == "white off":
-			whiteOff()
-		
-		elif cmd == "red blink":
-			redBlink(3.5)
+        elif cmd == "white on":
+            whiteOn()
 
-		elif cmd == "green blink":
-			greenBlink(3)
+        elif cmd == "white off":
+            whiteOff()
 
-		elif cmd == "blue blink":
-			blueBlink(3)
+        elif cmd == "red blink":
+            redBlink(3.5)
 
-		elif cmd == "yellow blink":
-			yellowBlink(3)
+        elif cmd == "green blink":
+            greenBlink(3)
 
-		elif cmd == "cyan blink":
-			cyanBlink(3)
+        elif cmd == "blue blink":
+            blueBlink(3)
 
-		elif cmd == "magenta blink":
-			magentaBlink(3)
+        elif cmd == "yellow blink":
+            yellowBlink(3)
 
-		elif cmd == "white blink":
-			whiteBlink(3)
+        elif cmd == "cyan blink":
+            cyanBlink(3)
 
-		elif cmd == 'quit':
-			redOff()
-			greenOff()
-			blueOff()			
-			break
-		else:
-			print("Not a valid command.")
-	
+        elif cmd == "magenta blink":
+            magentaBlink(3)
+
+        elif cmd == "white blink":
+            whiteBlink(3)
+
+        elif cmd == 'quit':
+            redOff()
+            greenOff()
+            blueOff()
+            break
+        else:
+            print("Not a valid command.")
+'''
