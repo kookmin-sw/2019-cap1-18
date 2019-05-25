@@ -6,6 +6,36 @@ import os
 app = Flask(__name__)
 Bootstrap(app)
 
+client = pymongo.MongoClient('mongodb://localhost:27017')
+db = client.dust
+accountcollection = db.account
+collection10 = db.standardPm10
+collection25 = db.standardPm25
+
+results10 = collection10.find()
+results25 = collection25.find()
+
+li10 = []
+li25 = []
+
+
+for doc in results10:
+	li = list(doc.values())
+	li10.append(li[1])
+	li10.append(li[2])
+	li10.append(li[3])
+	li10.append(li[4])
+
+for doc in results25:
+	li = list(doc.values())
+	li25.append(li[1])
+	li25.append(li[2])
+	li25.append(li[3])
+	li25.append(li[4])
+
+
+client.close()
+
 
 @app.route('/', methods=["GET"])
 def index():
@@ -36,13 +66,13 @@ def homepage():
 		eresults = ecollection.find().sort("_id",-1).limit(24)
 		client.close()
 
-		pm10grade = []
-		pm25grade = []
+		pm10value = []
+		pm25value = []
 
 		for doc in eresults:
 			li = list(doc.values())
-			pm10grade.append(li[5])
-			pm25grade.append(li[7])
+			pm10value.append(li[4])
+			pm25value.append(li[6])
 
 		eresults = ecollection.aggregate(
 				[
@@ -62,8 +92,8 @@ def homepage():
 		for poc in results:
 			datalist = list(poc.values())
 			if acclist[3] == datalist[1]:	
-				return render_template('main.html', recentData=datalist, menu=1, data=1, myLat=recent['ilat'], myLng=recent['ilng'], eLat=pos[0], eLng=pos[1], epm10grade=pm10grade, epm25grade=pm25grade)
-		return render_template('main.html', data=0) #바꿔야돼!!!!!!!!!!!!!!!!!!!!!!
+				return render_template('main.html', recentData=datalist, menu=1, data=1, myLat=recent['ilat'], myLng=recent['ilng'], eLat=pos[0], eLng=pos[1], epm10value=pm10value, epm25value=pm25value, grade10=li10, grade25=li25)
+		return render_template('main.html', data=0) 
 	else:
 		return index()
 
@@ -172,7 +202,7 @@ def simul():
 	simulinfo = collection.find_one({"idnum":session["idnum"]})
 	recent = rcollection.find_one({"idnum":session["idnum"]})
 	client.close()
-	return render_template('simul.html', menu=4, userwindow=simulinfo['window'], usermachine=simulinfo['machine'], simulrecent=recent['ipm10grade'])
+	return render_template('simul.html', menu=4, userwindow=simulinfo['window'], usermachine=simulinfo['machine'], simulrecent=recent['ipm10grade'], simulerecent=recent['epm10grade'])
 
 
 @app.route('/admin_login')
