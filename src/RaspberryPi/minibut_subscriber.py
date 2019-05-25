@@ -22,22 +22,19 @@ def on_message(client, userdata, message):
 
     myLCD = LCD_driver.lcd()
     myLED = led.led()
-    myLCD.lcd_display_device(machine, window)
-    time.sleep(1)
+    myLCD.lcd_display_device(int(machine), int(window))
+
+    time.sleep(3)
 
     myLCD.lcd_clear()
     time.sleep(0.5)
-   # print(type(pm10))
-   # print(type(pm25))
 
     myLCD.lcd_display_dust(float(pm10), float(pm25))
-    #print('done1')
+
     myLED.redOff()
     myLED.greenOff()
     myLED.yellowOff()
     myLED.blueOff()
-
-    #print(type(grade))
 
     grade = int(grade)
 
