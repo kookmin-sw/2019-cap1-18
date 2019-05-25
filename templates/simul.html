@@ -1,8 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-{{userwindow}}
-{{usermachine}}
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -94,24 +92,56 @@
 			<!-- 집 구조도 -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">현재 실내 미세먼지 상태</h6>
+					<h6 class="m-0 font-weight-bold text-primary">현재 실내 및 실외 미세먼지 상태</h6>
 				</div>
 				<div class="card-body" style="text-align:center;">
-					<div class="status">
+					<div class="status" style="display: inline-block;">
 						{% if simulrecent == 1 %}
-							<img style="width:200px; height: 200px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A2%8B%EC%9D%8C.png">
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A2%8B%EC%9D%8C.png">
 						{% elif simulrecent == 2 %}
-							<img style="width:200px; height: 200px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EB%B3%B4%ED%86%B5.png">
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EB%B3%B4%ED%86%B5.png">
+							<font color="black">실내</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;">보통</font>
 						{% elif simulrecent == 3 %}
-							<img style="width:200px; height: 200px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EB%82%98%EC%81%A8.png">
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EB%82%98%EC%81%A8.png">
 						{% elif simulrecent == 4 %}
-							<img style="width:200px; height: 200px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%9C%84%ED%97%98.png">
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%9C%84%ED%97%98.png">
+						{% endif %}
+					</div>	
+
+					<div class="status" style="display : inline-block;">
+						{% if simulerecent == 1 %}
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%A2%8B%EC%9D%8C.png">
+						{% elif simulerecent == 2 %}
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EB%B3%B4%ED%86%B5.png">
+						{% elif simulerecent == 3 %}
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EB%82%98%EC%81%A8.png">
+						{% elif simulerecent == 4 %}
+							<img style="width:155px; height: 155px;" src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/Web/%EC%8B%9C%EC%97%B0%ED%8E%98%EC%9D%B4%EC%A7%80/%EC%9C%84%ED%97%98.png">
 						{% endif %}
 
 					</div>
-					<div class="chart-area" style="height:auto">
-
-					</div>
+					<div class="status" style="display: inline-block;">
+						{% if simulrecent == 1 %}
+							<font color="black">실내</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;"> 좋음&nbsp;&nbsp;</font>
+						{% elif simulrecent == 2 %}
+							<font color="black">실내</font> <font color="green" style="font-family: 'Do Hyeon', sans-serif;"> 보통&nbsp;&nbsp;</font>
+						{% elif simulrecent == 3 %}
+							<font color="black">실내</font> <font color="orange" style="font-family: 'Do Hyeon', sans-serif;"> 나쁨&nbsp;&nbsp;</font>
+						{% elif simulrecent == 4 %}
+							<font color="black">실내</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;"> 위험&nbsp;&nbsp;</font>
+						{% endif %}
+					</div>	
+					<div class="status" style="display: inline-block;">
+						{% if simulerecent == 1 %}
+							<font color="black">실외</font> <font color="blue" style="font-family: 'Do Hyeon', sans-serif;"> 좋음</font>
+						{% elif simulerecent == 2 %}
+							<font color="black">실외</font> <font color="green" style="font-family: 'Do Hyeon', sans-serif;"> 보통</font>
+						{% elif simulerecent == 3 %}
+							<font color="black">실외</font> <font color="orange" style="font-family: 'Do Hyeon', sans-serif;"> 나쁨</font>
+						{% elif simulerecent == 4 %}
+							<font color="black">실외</font> <font color="red" style="font-family: 'Do Hyeon', sans-serif;"> 위험</font>
+						{% endif %}
+					</div>	
 				</div>
 			</div>
 		</div>
