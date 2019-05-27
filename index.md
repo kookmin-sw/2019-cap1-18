@@ -112,5 +112,5 @@ Using Web Page, users can easily view their accumulated indoor environment data 
   - aws ec2 server : http://bit.ly/2IGD4Uv
   - web server : http://bit.ly/2Piz4uH
   - db server : http://bit.ly/2UH2c4F
-
+  - MQTT Broker, Client: http://bit.ly/2HD9Epb
 
