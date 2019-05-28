@@ -14,8 +14,7 @@
   <div class="row">
 
     <div class="col-xl-8 col-lg-7">
-
-      <!-- Area Chart -->
+    <!-- Area Chart -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">실외 미세먼지</h6>
@@ -25,20 +24,20 @@
             <canvas id="myChart1"></canvas>
           </div>
           <hr>
-          <button id="toggleSize" class="btn btn-info btn-icon-split">
+          <button id="toggleSize1" class="btn btn-info btn-icon-split">
             <span class="icon text-white-50">
               <i class="fas fa-info-circle"></i>
             </span>
             <span class="text">자세히</span>
           </button>
-          실외 미세먼지 수치를 보여줍니다.
+           실외 미세먼지 수치를 보여줍니다.
         </div>
       </div>
 
-      <!-- Area Chart -->
+    <!-- Area Chart --> 
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">실내 미세먼지</h6>
+          <h6 class="m-0 font-weight-bold text-primary">공공데이터 실외 미세먼지</h6>
         </div>
         <div class="card-body">
           <div class="chart-area">
@@ -46,6 +45,26 @@
           </div>
           <hr>
           <button id="toggleSize2" class="btn btn-info btn-icon-split">
+            <span class="icon text-white-50">
+              <i class="fas fa-info-circle"></i>
+            </span>
+            <span class="text">자세히</span>
+          </button>
+          공공데이터 실외 미세먼지 수치를 보여줍니다.
+        </div>
+      </div>
+
+    <!-- Area Chart -->
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">실내 미세먼지</h6>
+        </div>
+        <div class="card-body">
+          <div class="chart-area">
+            <canvas id="myChart3"></canvas>
+          </div>
+          <hr>
+          <button id="toggleSize3" class="btn btn-info btn-icon-split">
             <span class="icon text-white-50">
               <i class="fas fa-info-circle"></i>
             </span>
@@ -86,27 +105,128 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 
-// external Area Chart
-  var mySize = 7;
+// external Area Chart 1 (kmu sensor cloud)
+  var mySize1 = 7;
+
+  var kDBpm10 = {{ kpm10 | tojson }};
+  var kDBpm25 = {{ kpm25 | tojson }};
+  var kDBdate = {{ kdate | tojson }};
+
+  kDBpm10.length = mySize1;
+  kDBpm25.length = mySize1;
+  kDBdate.length = mySize1;
+
+  kDBpm10 = kDBpm10.reverse();
+  kDBpm25 = kDBpm25.reverse();
+  kDBdate = kDBdate.reverse();
+
+  for (var i = 0; i < mySize1; i++)
+      kDBdate[i] = kDBdate[i].substr(11,5);
+
+
+  var ctx = document.getElementById("myChart1");
+  var chart1 = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: kDBdate,
+      datasets: [{
+        label: "실외 미세먼지",
+        lineTension: 0,
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointBorderColor: "rgba(78, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
+        pointHoverBorderColor: "rgba(255, 50, 50, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        fill:false,
+        data: kDBpm10,
+      }, {
+        label: "실외 초미세먼지",
+        lineTension: 0,
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(255, 115, 223, 1)",
+        pointBorderColor: "rgba(255, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 50, 50, 1)",
+        pointHoverBorderColor: "rgba(255, 50, 50, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        fill:false,
+        data: kDBpm25,
+      }],
+    },
+    options: {
+      maintainAspectRatio: false,
+      layout: {
+        padding: {
+          left: 10,
+          right: 25,
+          top: 25,
+          bottom: 0
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            padding: 10,
+
+            beginAtZero:true,
+            //max: myScale, //y axis
+            stepSize: 20
+          },
+          gridLines: {
+            color: "rgb(234, 236, 244)",
+            zeroLineColor: "rgb(234, 236, 244)",
+            drawBorder: false,
+            borderDash: [2],
+            zeroLineBorderDash: [2]
+          }
+        }],
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        titleMarginBottom: 10,
+        titleFontColor: '#6e707e',
+        titleFontSize: 14,
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        intersect: false,
+        mode: 'index',
+        caretPadding: 10,
+      }
+    }
+  });
+
+// external Area Chart 2
+  var mySize2 = 7;
 
   var eDBpm10 = {{ epm10 | tojson }};
   var eDBpm25 = {{ epm25 | tojson }};
   var eDBdate = {{ edate | tojson }};
 
-  eDBpm10.length = mySize;
-  eDBpm25.length = mySize;
-  eDBdate.length = mySize;
+  eDBpm10.length = mySize2;
+  eDBpm25.length = mySize2;
+  eDBdate.length = mySize2;
 
   eDBpm10 = eDBpm10.reverse();
   eDBpm25 = eDBpm25.reverse();
   eDBdate = eDBdate.reverse();
 
-  for (var i = 0; i < mySize; i++)
-      eDBdate[i] = eDBdate[i].substr(10,12);
+  for (var i = 0; i < mySize2; i++)
+      eDBdate[i] = eDBdate[i].substr(11,5);
 
 
-  var ctx = document.getElementById("myChart1");
-  var chart1 = new Chart(ctx, {
+  var ctx = document.getElementById("myChart2");
+  var chart2 = new Chart(ctx, {
     type: 'line',
     data: {
       labels: eDBdate,
@@ -187,27 +307,26 @@ Chart.defaults.global.defaultFontColor = '#858796';
     }
   });
 
-
 // internal Area Chart
-  var mySize2 = 7;
+  var mySize3 = 7;
 
   var iDBpm10 = {{ ipm10 | tojson }};
   var iDBpm25 = {{ ipm25 | tojson }};
   var iDBdate = {{ idate | tojson }};
 
-  iDBpm10.length = mySize2;
-  iDBpm25.length = mySize2;
-  iDBdate.length = mySize2;
+  iDBpm10.length = mySize3;
+  iDBpm25.length = mySize3;
+  iDBdate.length = mySize3;
 
   iDBpm10 = iDBpm10.reverse();
   iDBpm25 = iDBpm25.reverse();
   iDBdate = iDBdate.reverse();
 
-  for (var i = 0; i < mySize2; i++)
+  for (var i = 0; i < mySize3; i++)
       iDBdate[i] = iDBdate[i].substr(11,5);
 
-  var ctx2 = document.getElementById("myChart2");
-  var chart2 = new Chart(ctx2, {
+  var ctx3 = document.getElementById("myChart3");
+  var chart3 = new Chart(ctx3, {
     type: 'line',
     data: {
       labels: iDBdate,
@@ -288,31 +407,48 @@ Chart.defaults.global.defaultFontColor = '#858796';
     }
   });
 
-
 // Pie Chart
+  var kDBpm10grade = {{ kpm10grade | tojson }};
+  var kDBpm25grade = {{ kpm25grade | tojson }};
   var eDBpm10grade = {{ epm10grade | tojson }};
   var eDBpm25grade = {{ epm25grade | tojson }};
 
-  eDBpm10grade.length = mySize;
-  eDBpm25grade.length = mySize;
+  kDBpm10grade.length = mySize1;
+  kDBpm25grade.length = mySize1;
+  eDBpm10grade.length = mySize2;
+  eDBpm25grade.length = mySize2;
 
-  var sum = [0,0,0,0,0];
+  var sum1 = [0,0,0,0];
+  var sum2 = [0,0,0,0];
 
-  for (var i = 0; i < mySize; i++) {
-      var grade = eDBpm10grade[i];
-      sum[grade-1]++;
+  for (var i = 0; i < mySize1; i++) {
+      var grade = kDBpm10grade[i];
+      sum1[grade-1]++;
   }
+
+  for (var i = 0; i < mySize2; i++) {
+      var grade = eDBpm10grade[i];
+      sum2[grade-1]++;
+  }
+
   var ctx = document.getElementById("myPieChart1");
   var myPieChart1 = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ["좋음", "보통", "약간 나쁨", "나쁨", "최악"],
-      datasets: [{
-        data: sum,
-        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc','#36b9cc','#36b9cc'],
-        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
-        hoverBorderColor: "rgba(234, 236, 244, 1)",
-      }],
+        labels: ["좋음", "보통", "위험" ,"나쁨"],
+        datasets: [{
+          label: "실외 미세먼지",
+          data: sum1,
+          backgroundColor: ['#1c47c8', '#1cc88a', '#ef3713','#eae30b'],
+          hoverBackgroundColor: ['#1c47c8', '#17a673', '#ef3713','#eae30b'],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }, {
+          label: "공공데이터 실외 미세먼지",
+          data: sum2,
+          backgroundColor: ['#1c47c8', '#1cc88a', '#ef3713','#eae30b'],
+          hoverBackgroundColor: ['#1c47c8', '#17a673', '#ef3713','#eae30b'],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        }],
     },
     options: {
       maintainAspectRatio: false,
@@ -333,45 +469,46 @@ Chart.defaults.global.defaultFontColor = '#858796';
     },
   });
 
+/*
+addDataset(sum1);
+addDataset(sum2);
+*/
 
 
+document.getElementById('toggleSize1').addEventListener('click', function() {
+    mySize1 = mySize1 === 7 ? 24 : 7;
+    //Chart2 (eDust)
+    var kDBpm10 = {{ kpm10 | tojson }};
+    var kDBpm25 = {{ kpm25 | tojson }};
+    var kDBdate = {{ kdate | tojson }};
 
+    kDBpm10.length = mySize1;
+    kDBpm25.length = mySize1;
+    kDBdate.length = mySize1;
 
-document.getElementById('toggleSize').addEventListener('click', function() {
-    mySize = mySize === 7 ? 24 : 7;
-    //Chart1 (eDust)
-    var eDBpm10 = {{ epm10 | tojson }};
-    var eDBpm25 = {{ epm25 | tojson }};
-    var eDBdate = {{ edate | tojson }};
+    kDBpm10 = kDBpm10.reverse();
+    kDBpm25 = kDBpm25.reverse();
+    kDBdate = kDBdate.reverse();
 
-    eDBpm10.length = mySize;
-    eDBpm25.length = mySize;
-    eDBdate.length = mySize;
+    for (var i = 0; i < mySize1; i++)
+        kDBdate[i] = kDBdate[i].substr(11,5);
 
-    eDBpm10 = eDBpm10.reverse();
-    eDBpm25 = eDBpm25.reverse();
-    eDBdate = eDBdate.reverse();
-
-    for (var i = 0; i < mySize; i++)
-        eDBdate[i] = eDBdate[i].substr(10,12);
-
-    chart1.data.labels=eDBdate;
-    chart1.data.datasets[0].data=eDBpm10;
-    chart1.data.datasets[1].data=eDBpm25;
+    chart1.data.labels=kDBdate;
+    chart1.data.datasets[0].data=kDBpm10;
+    chart1.data.datasets[1].data=kDBpm25;
 
     chart1.update();
-
     //Chart3 (donut)
-    var eDBpm10grade = {{ epm10grade | tojson }};
-    var eDBpm25grade = {{ epm25grade | tojson }};
+    var kDBpm10grade = {{ kpm10grade | tojson }};
+    var kDBpm25grade = {{ kpm25grade | tojson }};
 
-    eDBpm10grade.length = mySize;
-    eDBpm25grade.length = mySize;
+    kDBpm10grade.length = mySize1;
+    kDBpm25grade.length = mySize1;
 
-    var sum = [0,0,0,0,0];
+    var sum = [0,0,0,0];
 
-    for (var i = 0; i < mySize; i++) {
-        var grade = eDBpm10grade[i];
+    for (var i = 0; i < mySize1; i++) {
+        var grade = kDBpm10grade[i];
         sum[grade-1]++;
     }
 
@@ -382,31 +519,83 @@ document.getElementById('toggleSize').addEventListener('click', function() {
 
 
 document.getElementById('toggleSize2').addEventListener('click', function() {
-  console.log("a");
-  mySize2 = mySize2 === 7 ? 24 : 7;
+    mySize2 = mySize2 === 7 ? 24 : 7;
+    //Chart2 (eDust)
+    var eDBpm10 = {{ epm10 | tojson }};
+    var eDBpm25 = {{ epm25 | tojson }};
+    var eDBdate = {{ edate | tojson }};
+
+    eDBpm10.length = mySize2;
+    eDBpm25.length = mySize2;
+    eDBdate.length = mySize2;
+
+    eDBpm10 = eDBpm10.reverse();
+    eDBpm25 = eDBpm25.reverse();
+    eDBdate = eDBdate.reverse();
+
+    for (var i = 0; i < mySize2; i++)
+        eDBdate[i] = eDBdate[i].substr(11,5);
+
+    chart2.data.labels=eDBdate;
+    chart2.data.datasets[0].data=eDBpm10;
+    chart2.data.datasets[1].data=eDBpm25;
+
+    chart2.update();
+
+    //Chart3 (donut)
+    var eDBpm10grade = {{ epm10grade | tojson }};
+    var eDBpm25grade = {{ epm25grade | tojson }};
+
+    eDBpm10grade.length = mySize2;
+    eDBpm25grade.length = mySize2;
+
+    var sum = [0,0,0,0];
+
+    for (var i = 0; i < mySize2; i++) {
+        var grade = eDBpm10grade[i];
+        sum[grade-1]++;
+    }
+
+    myPieChart1.data.datasets[1].data=sum;
+
+    myPieChart1.update();
+});
+
+
+document.getElementById('toggleSize3').addEventListener('click', function() {
+  mySize3 = mySize3 === 7 ? 24 : 7;
 
   var iDBpm10 = {{ ipm10 | tojson }};
   var iDBpm25 = {{ ipm25 | tojson }};
   var iDBdate = {{ idate | tojson }};
 
-  iDBpm10.length = mySize2;
-  iDBpm25.length = mySize2;
-  iDBdate.length = mySize2;
+  iDBpm10.length = mySize3;
+  iDBpm25.length = mySize3;
+  iDBdate.length = mySize3;
 
   iDBpm10 = iDBpm10.reverse();
   iDBpm25 = iDBpm25.reverse();
   iDBdate = iDBdate.reverse();
 
-  for (var i = 0; i < mySize2; i++)
+  for (var i = 0; i < mySize3; i++)
       iDBdate[i] = iDBdate[i].substr(11,5);
 
-  chart2.data.labels=iDBdate;
-  chart2.data.datasets[0].data=iDBpm10;
-  chart2.data.datasets[1].data=iDBpm25;
+  chart3.data.labels=iDBdate;
+  chart3.data.datasets[0].data=iDBpm10;
+  chart3.data.datasets[1].data=iDBpm25;
 
-  chart2.update();
+  chart3.update();
 });
 
+function addDataset(input) {
+    myPieChart1.data.datasets.push({
+          data: input,
+          backgroundColor: ['#1c47c8', '#1cc88a', '#ef3713','#eae30b'],
+          hoverBackgroundColor: ['#1c47c8', '#17a673', '#ef3713','#eae30b'],
+          hoverBorderColor: "rgba(234, 236, 244, 1)",
+        });
+    myPieChart1.update();
+}
 </script>
 
 

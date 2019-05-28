@@ -6,6 +6,7 @@ import os
 app = Flask(__name__)
 Bootstrap(app)
 
+#grade
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client.dust
 accountcollection = db.account
@@ -14,10 +15,10 @@ collection25 = db.standardPm25
 
 results10 = collection10.find()
 results25 = collection25.find()
+client.close()
 
 li10 = []
 li25 = []
-
 
 for doc in results10:
 	li = list(doc.values())
@@ -33,8 +34,6 @@ for doc in results25:
 	li25.append(li[3])
 	li25.append(li[4])
 
-
-client.close()
 
 
 @app.route('/', methods=["GET"])
@@ -105,10 +104,13 @@ def details():
 		db = client.dust
 		icollection = db.internaldust
 		ecollection = db.externaldust
-		iresults = icollection.find().sort("_id",-1).limit(24)
+		kcollection = db.kookmindust
 		eresults = ecollection.find().sort("_id",-1).limit(24)
+		iresults = icollection.find().sort("_id",-1).limit(240)
+		#kresults = kcollection.find({"device":"AirSensor20133219"}).sort("_id",-1).limit(24)
 		client.close()
 
+		#external
 		epm10 = []
 		epm25 = []
 		epm10grade = []
@@ -123,17 +125,42 @@ def details():
 			epm25grade.append(li[7])
 			edate.append(li[8])
 
+		#internal
 		ipm10 = []
 		ipm25 = []
 		idate = []
+		temp = 0
 
 		for doc in iresults:
-			li = list(doc.values())
-			ipm10.append(li[4])
-			ipm25.append(li[6])
-			idate.append(li[8])
+			if (temp % 10 == 0):
+				li = list(doc.values())
+				ipm10.append(li[4])
+				ipm25.append(li[6])
+				idate.append(li[8])
+			temp += 1
 
-		return render_template('details.html', title='Details', menu=2, epm10=epm10, epm25=epm25, epm10grade=epm10grade, epm25grade=epm25grade, edate=edate, ipm10=ipm10, ipm25=ipm25, idate=idate)
+		#kmu sensor cloud
+		kpm10 = []
+		kpm25 = []
+		kpm10grade = []
+		kpm25grade = []
+		kdate = []
+
+		kresults = kcollection.aggregate([
+			{"$group": {"_id": {"device":"AirSensor20133219", "edate":"$edate"}, "pm10":{"$last":"$epm10value"}, "pm10grade":{"$last": "$epm10grade"}, "pm25":{"$last": "$epm25value"}, "pm25grade":{"$last": "$epm25grade"}, "date":{"$last": "$edate"}}},
+			{"$sort": {"_id": -1}},
+			{"$limit": 24}
+			])
+
+		for doc in kresults:
+			li = list(doc.values())
+			kpm10.append(li[1])
+			kpm25.append(li[3])
+			kpm10grade.append(li[2])
+			kpm25grade.append(li[4])
+			kdate.append(li[5])
+
+		return render_template('details.html', title='Details', menu=2, epm10=epm10, epm25=epm25, epm10grade=epm10grade, epm25grade=epm25grade, edate=edate, ipm10=ipm10, ipm25=ipm25, idate=idate, kpm10=kpm10, kpm25=kpm25, kdate=kdate, kpm10grade=kpm10grade, kpm25grade=kpm25grade)
 	else:
 		return index()
 
@@ -173,7 +200,7 @@ def control():
 
 	collection.update({"idnum":session["idnum"]}, {"$set": {"userValue":request.form['userValue']}})
 
-	
+
 	if request.form.get('optset') == 'on':
 		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":True}})	
 	else:
