@@ -242,7 +242,7 @@ input:checked + .slider:before {
           <i class="fas fa-fw fa-table"></i>
           <span>Simul</span></a>
       </li>
-
+      {% if session['admin'] %}
       <!-- Nav Item - Tables -->
       {% if menu == 5 %}
       <li class="nav-item active">
@@ -253,7 +253,7 @@ input:checked + .slider:before {
           <i class="fas fa-fw fa-table"></i>
           <span>Admin</span></a>
       </li>
-
+      {% endif %}
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -273,7 +273,7 @@ input:checked + .slider:before {
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-          <img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/logo/%EB%A1%9C%EA%B3%A0%203.png" style="width:650px; height: 60px;">
+          <img src="https://raw.githubusercontent.com/kookmin-sw/2019-cap1-18/master/img/design%20source/logo/%EB%A1%9C%EA%B3%A0%203.png" style="height: 60px;">
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
