@@ -6,7 +6,6 @@ import os
 app = Flask(__name__)
 Bootstrap(app)
 
-#grade
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client.dust
 accountcollection = db.account
@@ -15,7 +14,6 @@ collection25 = db.standardPm25
 
 results10 = collection10.find()
 results25 = collection25.find()
-client.close()
 
 li10 = []
 li25 = []
@@ -34,6 +32,7 @@ for doc in results25:
 	li25.append(li[3])
 	li25.append(li[4])
 
+client.close()
 
 
 @app.route('/', methods=["GET"])
@@ -44,8 +43,7 @@ def index():
 		#return render_template('logout.html') #임시
 		return homepage()
 
-
-
+		
 @app.route('/main')
 def homepage():
 	if session.get('logged_in'):
@@ -200,7 +198,7 @@ def control():
 
 	collection.update({"idnum":session["idnum"]}, {"$set": {"userValue":request.form['userValue']}})
 
-
+	
 	if request.form.get('optset') == 'on':
 		collection.update({"idnum":session["idnum"]}, {"$set": {"optSet":True}})	
 	else:
@@ -336,6 +334,7 @@ def login():
 	db = client.dust
 	collection = db.account
 	
+	session['admin'] = False
 	#found = collection.find({"$and":[{"id":request.form['username']}, {"password":request.form['password'] }]})
 	found = collection.find()
 	for doc in found:
@@ -344,6 +343,8 @@ def login():
 			session['logged_in'] = True
 			session['idnum'] = request.form['idnum']
 			session['username'] = request.form['username']
+			if len(li)== 5:
+				session['admin'] = True
 
 
 	flash('유저네임이나 암호가 맞지 않습니다.')
