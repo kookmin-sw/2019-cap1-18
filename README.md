@@ -65,6 +65,7 @@ Using Web Page, users can easily view their accumulated indoor environment data 
 * 역할 : 서버 구축 및 관리
          통신 컴포넌트 구현
 * e-mail : minbosh92@gmail.com
+* github : https://github.com/sangka9
 ```
 
 <img src="https://i.imgur.com/q8d2hy7.jpg" width="300px">
@@ -74,6 +75,7 @@ Using Web Page, users can easily view their accumulated indoor environment data 
 * 역할 : 라즈베리파이 환경 구성
          웹 구현
 * e-mail : happyse97@naver.com
+* github : https://github.com/seiiq16
 ```
 
 <img src="https://i.imgur.com/KLQqduu.jpg" width="300px">
@@ -84,6 +86,7 @@ Using Web Page, users can easily view their accumulated indoor environment data 
          웹 구현
          Mini BuT Hardware 제작
 * e-mail : mtj2741@naver.com
+* github : https://github.com/tjmin
 ```
 
 <img src="https://i.imgur.com/kigbNp9.jpg" width="300px">
@@ -93,6 +96,7 @@ Using Web Page, users can easily view their accumulated indoor environment data 
 * 역할 : DB 생성 및 관리
          데이터 처리 컴포넌트 구현
 * e-mail : ayopark12@gmail.com
+* github : https://github.com/KamJaTang
 ```
 
 <img src="https://i.imgur.com/6cciTaa.jpg" width="300px">
@@ -102,6 +106,7 @@ Using Web Page, users can easily view their accumulated indoor environment data 
 * 역할 : 연동 기기 Hardware 제작
          연동 기기 Software 구현
 * e-mail : ansxjrdptj94@naver.com
+* github : https://github.com/MMKe
 ```
 
 - - -
