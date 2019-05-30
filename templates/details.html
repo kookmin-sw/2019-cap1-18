@@ -469,12 +469,6 @@ Chart.defaults.global.defaultFontColor = '#858796';
     },
   });
 
-/*
-addDataset(sum1);
-addDataset(sum2);
-*/
-
-
 document.getElementById('toggleSize1').addEventListener('click', function() {
     mySize1 = mySize1 === 7 ? 24 : 7;
     //Chart2 (eDust)
@@ -586,16 +580,6 @@ document.getElementById('toggleSize3').addEventListener('click', function() {
 
   chart3.update();
 });
-
-function addDataset(input) {
-    myPieChart1.data.datasets.push({
-          data: input,
-          backgroundColor: ['#1c47c8', '#1cc88a', '#ef3713','#eae30b'],
-          hoverBackgroundColor: ['#1c47c8', '#17a673', '#ef3713','#eae30b'],
-          hoverBorderColor: "rgba(234, 236, 244, 1)",
-        });
-    myPieChart1.update();
-}
 </script>
 
 
