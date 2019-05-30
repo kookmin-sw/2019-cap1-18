@@ -229,45 +229,49 @@ def simul():
 	client.close()
 	return render_template('simul.html', menu=4, userwindow=simulinfo['window'], usermachine=simulinfo['machine'], simulrecent=recent['ipm10grade'], simulerecent=recent['epm10grade'])
 
-
+"""
 @app.route('/admin_login')
 def admin_login():
 	return render_template('admin_login.html', menu=5)
-
-@app.route('/admin', methods=['POST'])
+"""
+@app.route('/admin')
 def admin():
-	if request.form['id'] == 'admin' and request.form['password'] == '123':
-		client = pymongo.MongoClient('mongodb://localhost:27017')
-		db = client.dust
-		ecollection = db.externaldust
-		icollection = db.internaldust
-		results = ecollection.find({"edate": {"$exists":True}})
 
-		api = ecollection.aggregate([
-			{"$group": {"_id": "$location", "elat": {"$last": "$elat"}, "elng": {"$last": "$elng"}, "pm10":{"$last": "$epm10value"}, "pm25":{"$last": "$epm25value"}, "date":{"$last": "$edate"}}}
-			])
+	client = pymongo.MongoClient('mongodb://localhost:27017')
+	db = client.dust
+	ecollection = db.externaldust
+	icollection = db.internaldust
 
-		elat = []
-		elng = []
-		for doc in api:
-			li = list(doc.values())
-			elat.append(li[1])
-			elng.append(li[2])
+	eresults = ecollection.find({"edate": {"$exists":True}})
 
-		user = icollection.aggregate([
-			{"$group": {"_id": "$idnum", "ilat": {"$last": "$ilat"}, "ilng": {"$last": "$ilng"}, "pm10":{"$last": "$ipm10value"}, "pm25":{"$last": "$ipm25value"}, "date":{"$last": "$idate"}}}
-			])
+	api = ecollection.aggregate([
+		{"$group": {"_id": "$location", "elat": {"$last": "$elat"}, "elng": {"$last": "$elng"}, "pm10":{"$last": "$epm10value"}, "pm25":{"$last": "$epm25value"}, "date":{"$last": "$edate"}}}
+		])
 
-		ilat = []
-		ilng = []
-		for doc in user:
-			li = list(doc.values())
-			ilat.append(li[1])
-			ilng.append(li[2])
+	elat = []
+	elng = []
+	for doc in api:
+		li = list(doc.values())
+		elat.append(li[1])
+		elng.append(li[2])
 
-		return render_template('admin.html', menu=5, eData=results, eLat=elat, eLng=elng, iLat=ilat, iLng=ilng)
-	else:
-		return admin_login()
+	user = icollection.aggregate([
+		{"$group": {"_id": "$idnum", "ilat": {"$last": "$ilat"}, "ilng": {"$last": "$ilng"}, "pm10":{"$last": "$ipm10value"}, "pm25":{"$last": "$ipm25value"}, "date":{"$last": "$idate"}}}
+		])
+
+	account = []
+	ilat = []
+	ilng = []
+	for doc in user:
+		li = list(doc.values())
+		temp = []
+		for i in range(6):
+			temp.append(li[i])
+		account.append(temp)
+		ilat.append(li[1])
+		ilng.append(li[2])
+
+	return render_template('admin.html', menu=5, eData=eresults, eLat=elat, eLng=elng, iLat=ilat, iLng=ilng, minibut=account)
 
 @app.route('/map')
 def map():
