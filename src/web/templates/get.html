@@ -1,0 +1,51 @@
+<!--<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Set Data</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+ </head>
+ <body>
+ -->
+{% extends 'layout.html' %}
+ 
+{% block content %}
+
+ 	<!--<h1>데이터를 입력하세요.h1</h1>
+ 	<h2>데이터를 입력하세요.h2</h2>-->
+
+	<div class="container">
+		<h2>수치값을 입력하세요.</h2>
+		<form role="form" action="/hello" method="get">
+	  	<!--Name(ID):<br>-->
+	  	 	<div class="form-group">
+	  	 		<label for="name">Name(ID)</label>
+	  			<input type="text" class="form-control" placeholder="Name" name="firstname"> 
+	  		</div>
+	  		<!--<br>-->
+	  		<!--미세먼지(PM 10):<br>-->
+	  		<div class="form-group">
+	  			<label for="Data1">미세먼지(PM10)</label>
+	  			<input type="text" class="form-control" placeholder="PM 10" name="lastname"> 
+	  		<!--<br>-->
+	  		<!--초미세먼지(PM 2.5):<br>-->
+	  		</div>
+	  		<div class="form-group">
+	  			<label for="Data2">초미세먼지(PM2.5)</label>
+	  			<input type="text" class="form-control" placeholder="PM 2.5" name="email"> 
+	  		</div>
+	  		<br>
+	  		<br>
+	  		<div class="form-group">	
+	  			<input type="submit" class="btn btn-primary" value="Submit">
+	  		</div>
+		</form> 
+	</div>
+
+ <!--</body>
+</html>-->
+{% endblock %}

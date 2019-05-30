@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+<!--<button type="button" onclick="location.href='/logout'">Logout</button>-->
+
+
+  		<div class="form-group" style="padding:50px 20px; text-align:center">
+  			<input type="submit" onclick="location.href='/logout'"class="btn btn-primary" value="Log out">
+  		</div>
+{% endif %}
+{% endblock %}
