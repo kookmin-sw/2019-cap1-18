@@ -45,7 +45,11 @@ Using Web Page, users can easily view their accumulated indoor environment data 
 
 아래 이미지를 클릭하시면 프로젝트 소개 영상을 보실 수 있습니다.
 
-[![MASK](https://img.youtube.com/vi/ffzc6NPKIRc/0.jpg)](https://www.youtube.com/watch?v=ffzc6NPKIRc&feature=youtu.be)
+[![MASK](https://img.youtube.com/vi/S3fOQFMwCMY/0.jpg)](https://www.youtube.com/watch?v=S3fOQFMwCMY&feature=youtu.be)
+
+아래 이미지를 클릭하시면 프로젝트 시연 영상을 보실 수 있습니다.
+
+[![MASK](https://img.youtube.com/vi/_DypG1nGhQU/0.jpg)](https://www.youtube.com/watch?v=_DypG1nGhQU&feature=youtu.be)
 
 프로젝트 소개 사이트 : https://kookmin-sw.github.io/2019-cap1-18/
 
